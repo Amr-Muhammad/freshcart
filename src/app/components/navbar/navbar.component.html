@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container">
+
+        <img routerLink="home" src="assets/images/freshcart-logo.svg" alt="" class="clickable">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul *ngIf="isLogged" class="navbar-nav ms-3 mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link me-2" routerLinkActive="active" routerLink="home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link me-2" routerLinkActive="active" routerLink="cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link me-2" routerLinkActive="active" routerLink="wishlist">Wishlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link me-2" routerLinkActive="active" routerLink="products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link me-2" routerLinkActive="active" routerLink="categories">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link me-2" routerLinkActive="active" routerLink="brands">Brands</a>
+                </li>
+
+            </ul>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                <li *ngIf="!isLogged" class="nav-item">
+                    <a class="nav-link me-2" routerLinkActive="active" routerLink="register">Register</a>
+                </li>
+
+                <li *ngIf="!isLogged" class="nav-item">
+                    <a class="nav-link me-2" routerLinkActive="active" routerLink="login">Login</a>
+                </li>
+
+                <li *ngIf="isLogged" class="nav-item d-flex align-items-center">
+                    <i class="fa-brands fa-facebook-f me-3 clickable"></i>
+                    <i class="fa-brands fa-twitter me-3 clickable"></i>
+                    <i class="fa-brands fa-instagram me-3 clickable"></i>
+                    <i class="fa-brands fa-youtube me-3 clickable"></i>
+                    <i class="fa-brands fa-tiktok me-3 clickable"></i>
+                </li>
+
+                <li *ngIf="isLogged" class="nav-item">
+                    <a class="nav-link me-3 clickable" routerLinkActive="active" (click)="logout()">Logout</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>

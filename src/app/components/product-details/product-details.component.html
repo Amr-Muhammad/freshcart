@@ -1,0 +1,166 @@
+<div class="py-5">
+    <div class="py-5">
+
+        <div *ngIf="productDetails" class="row py-5">
+
+            <div class="col-md-5 position-relative">
+
+                <div class="w-100 mt-3">
+
+                    <owl-carousel-o [options]="customOptions">
+
+                        <ng-container *ngFor="let slide of productDetails.images">
+                            <ng-template carouselSlide>
+                                <img [src]="slide">
+                            </ng-template>
+                        </ng-container>
+
+                    </owl-carousel-o>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6 offset-1">
+                <p class="mainColor textShadow">{{productDetails.category.name}}</p>
+                <h3 class="fw">{{productDetails.title}}</h3>
+                <p>{{productDetails.description}}.</p>
+                <i class="fa-solid fa-star text-warning me-1"></i>
+                <span class="me-2 fw">{{productDetails.ratingsAverage}}</span>
+                <span class="mainColor textShadow">({{productDetails.ratingsQuantity}} reviews)</span>
+                <p class="mt-2 fw fs-5">{{productDetails.price|currency:'EGP '}}</p>
+                <hr class="my-3">
+                <button class="form-control btn btn-success">Add to cart</button>
+                <hr class="my-3">
+
+                <table class="w-100 text-muted">
+
+                    <tr>
+                        <td class="w-25">Availability:</td>
+                        <td>In Stock</td>
+                    </tr>
+
+                    <tr>
+                        <td>Quantity:</td>
+                        <td>{{productDetails.quantity}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Shipping:</td>
+                        <td class="fsxsm">01 day shipping. (Free pickup today)</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- <div>
+
+            <nav class="mb-3">
+                <div class="d-flex list-unstyled fw-bold">
+
+                    <li class="position-relative me-4">
+                        <a class="nav-link2 text-muted text-decoration-none clickable"
+                            routerLinkActive="active2">Product Details</a>
+                    </li>
+
+                    <li class="position-relative">
+                        <a class="nav-link2 text-muted text-decoration-none clickable">Information</a>
+                    </li>
+
+                </div>
+                <hr>
+            </nav>
+
+
+
+            <div>
+                <div>
+                    <h4>Nutrient Value & Benefits</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tellus iaculis
+                        urna
+                        bibendum in lacus, integer. Id imperdiet vitae varius sed magnis eu nisi nunc sit. Vel, varius
+                        habitant ornare ac rhoncus. Consequat risus facilisis ante ipsum netus risus adipiscing sagittis
+                        sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+
+                <div>
+                    <h4>Storage Tips</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tellus iaculis
+                        urna
+                        bibendum in lacus, integer. Id imperdiet vitae varius sed magnis eu nisi nunc sit. Vel, varius
+                        habitant ornare ac rhoncus. Consequat risus facilisis ante ipsum netus risus adipiscing sagittis
+                        sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+
+                <div>
+                    <h4>Unit</h4>
+                    <p class="text-muted">{{productDetails?.quantity}} Unit</p>
+                </div>
+
+                <div>
+                    <h4>Seller</h4>
+                    <p class="text-muted">DMart Pvt. LTD</p>
+                </div>
+            </div>
+
+        </div> -->
+    </div>
+</div>
+
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="productDetails-tab" data-bs-toggle="tab" data-bs-target="#productDetails"
+            type="button" role="tab" aria-controls="productDetails" aria-selected="true">product Details</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+            role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+
+    <div class="tab-pane active" id="productDetails" role="tabpanel" aria-labelledby="productDetails-tab" tabindex="0">
+
+        <div>
+            <h4 class="text-black">Nutrient Value & Benefits</h4>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tellus
+                iaculis urna
+                bibendum in lacus, integer. Id imperdiet vitae varius sed magnis eu nisi nunc sit. Vel,
+                varius
+                habitant ornare ac rhoncus. Consequat risus facilisis ante ipsum netus risus adipiscing
+                sagittis
+                sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div>
+            <h4 class="text-black">Storage Tips</h4>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tellus
+                iaculis urna
+                bibendum in lacus, integer. Id imperdiet vitae varius sed magnis eu nisi nunc sit. Vel,
+                varius
+                habitant ornare ac rhoncus. Consequat risus facilisis ante ipsum netus risus adipiscing
+                sagittis
+                sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div>
+            <h4 class="text-black">Unit</h4>
+            <p class="text-muted">{{productDetails?.quantity}} Unit</p>
+        </div>
+
+        <div>
+            <h4 class="text-black">Seller</h4>
+            <p class="text-muted">DMart Pvt. LTD</p>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+</div>

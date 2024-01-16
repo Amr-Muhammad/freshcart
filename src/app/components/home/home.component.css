@@ -1,0 +1,21 @@
+:root {
+    --greenColor: rgb(9, 184, 9);
+}
+
+.fixedH {
+    height: 12.5rem;
+}
+
+.icon{
+    border-right: 1px solid black;
+}
+
+.searchInput::placeholder{
+    font-weight: 400;
+    color: rgba(83, 83, 83, 0.76);
+    font-weight: 500;
+}
+
+.searchInput:focus{
+    box-shadow: 0px 0px 5px var(--greenColor);
+}

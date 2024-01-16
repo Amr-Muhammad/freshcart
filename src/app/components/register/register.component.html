@@ -1,0 +1,83 @@
+<div class="mt-5">
+    <h2 class="my-5">Register Now</h2>
+</div>
+
+<form (ngSubmit)="submit(registerForm)" [formGroup]="registerForm">
+
+    <div id="name">
+        <div class="mb-3">
+            <label for="name">Name :</label>
+            <input formControlName="name" class="form-control" type="text" id="name">
+        </div>
+        <div class="alert alert-danger" *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+            <p *ngIf="registerForm.get('name')?.getError('required')" class="m-0 p-0">Username is required.</p>
+            <p *ngIf="registerForm.get('name')?.getError('maxlength')" class="m-0 p-0">The maximum length of the
+                username
+                is 8 characters</p>
+            <p *ngIf="registerForm.get('name')?.getError('minlength')" class="m-0 p-0">The minimum length of the
+                username
+                is 3 characters</p>
+        </div>
+    </div>
+
+    <div id="email">
+        <div class="mb-3">
+            <label for="email">Email :</label>
+            <input formControlName="email" class="form-control" type="text" id="email">
+        </div>
+        <div class="alert alert-danger" *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+            <p class="m-0">Enter a valid email.</p>
+        </div>
+    </div>
+
+
+    <div id="password">
+
+        <div class="mb-3">
+            <label for="password">Password :</label>
+            <input formControlName="password" class="form-control" type="text" id="password">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+            <p *ngIf="registerForm.get('password')?.getError('required')" class="m-0">Password is required</p>
+            <p *ngIf="registerForm.get('password')?.getError('pattern')" class="m-0">Minimum eight characters, at least
+                one
+                uppercase letter, one lowercase letter, one number and one special character </p>
+        </div>
+    </div>
+
+
+    <div id="rePassword">
+        <div class="mb-3">
+            <label for="repassword">Repassword :</label>
+            <input formControlName="rePassword" class="form-control" type="text" id="repassword">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched">
+            <p *ngIf="registerForm.get('rePassword')?.getError('required')" class="m-0">Reassword is required</p>
+            <p *ngIf="registerForm.get('rePassword')?.getError('matching')" class="m-0">Password and repassword aren't
+                matched</p>
+        </div>
+    </div>
+
+    <div id="phone">
+        <div class="mb-3">
+            <label for="phone">Phone :</label>
+            <input formControlName="phone" class="form-control" type="text" id="phone">
+        </div>
+        <div class="alert alert-danger" *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
+            <p class="m-0">Enter a valid phone number.</p>
+        </div>
+    </div>
+
+
+    <button [disabled]="registerForm.invalid" class="btn btn-success d-block ms-auto">
+        <i *ngIf="!isLoading">Submit</i>
+        <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+    </button>
+
+</form>
+
+<div *ngIf="errorMessage" class="alert alert-danger text-center mt-3">
+    <p class="m-0">{{errorMessage}}</p>
+</div>

@@ -1,0 +1,101 @@
+<div class="row g-0">
+
+    <div class="col-md-12">
+
+        <owl-carousel-o [options]="customOptions">
+
+            <ng-template carouselSlide>
+                <div class="position-relative w-100">
+                    <div class="position-absolute top-50 translate-middle-y ms-5 text-black col-md-4">
+                        <p class="bg-warning d-inline-block fw-bold px-1 rounded-2 fsxsm m-0">Opening Sale Discount 50%
+                        </p>
+                        <h2 class="fw-bolder fsBig">SuperMarket For Fresh Grocery</h2>
+                        <p class="text-muted fs-5">Introduced a new model for online grocery shopping and convenient
+                            home delivery.</p>
+                    </div>
+                    <img class="w-100" src="../../../assets/images/images/grocery-banner.png" alt="">
+                </div>
+            </ng-template>
+
+            <ng-template carouselSlide>
+                <div class="position-absolute top-50 translate-middle-y ms-5 text-black col-md-4">
+                    <p class="bg-warning d-inline-block fw-bold px-1 rounded-2 fsxsm m-0">Free Shipping - orders over
+                        $100</p>
+                    <h2 class="fw-bolder fsBig">Free Shipping on orders over <span class="mainColor">$100</span>
+                    </h2>
+                    <p class="text-muted fs-5">Free Shipping to First-Time Customers Only, After promotions and
+                        discounts are applied.</p>
+                </div>
+                <img src="../../../assets/images/images/grocery-banner-2.jpeg" alt="">
+            </ng-template>
+
+        </owl-carousel-o>
+
+    </div>
+
+</div>
+
+<div class="my-4">
+    <h2 class="fw-bold">Featured Categories</h2>
+</div>
+
+<div>
+    <owl-carousel-o [options]="customOptions2">
+        <ng-container *ngFor="let slide of categories">
+            <ng-template carouselSlide>
+                <div class="border border-1 rounded-3 text-center">
+                    <img class="fixedH w-100 mx-auto rounded-top-3 mb-2" [src]="slide.image">
+                    <p class="text-black">{{slide.name}}</p>
+                </div>
+            </ng-template>
+        </ng-container>
+
+    </owl-carousel-o>
+</div>
+
+<div class="d-flex justify-content-between align-items-center my-4">
+
+    <h2 class="fw-bold">Popular Products</h2>
+
+    <div class="align-items-center position-relative">
+
+        <input class="searchInput form-control pe-5" [(ngModel)]="searchValue" type="text"
+            placeholder="Search for products">
+
+        <i class="position-absolute end-0 top-50 translate-middle-y  me-2 fa-solid fa-magnifying-glass clickable"></i>
+
+    </div>
+
+</div>
+
+<div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2 mb-5 g-4">
+
+    <div *ngFor="let item of products|searchPipe:searchValue" class="col">
+
+        <div class="p-3 border border-1 borderColor rounded-3">
+
+            <img src="{{item.imageCover}}" class="w-75 m-auto d-block mb-2 clickable"
+                [routerLink]="['/productDetails', item._id]" alt="">
+
+            <span class="gray fsxsm fw-bold clickable"
+                [routerLink]="['/productDetails', item._id]">{{item.subcategory[0].name}}</span>
+
+            <p class="fw-bold m-0  clickable" [routerLink]="['/productDetails', item._id]">{{item.title.split('
+                ',4).join(' ')}}</p>
+
+            <div class="gray mb-2 fssm">
+                <i class="fa-solid fa-star text-warning"></i>
+                <span>{{item.ratingsAverage}}</span>
+                <span>({{item.ratingsQuantity}})</span>
+            </div>
+
+            <div class="d-flex fw-bold justify-content-between align-items-center">
+                <span>{{item.price|currency:'EGP '}}</span>
+                <button class="btn btn-success fsxsm">+ Add</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

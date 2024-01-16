@@ -1,0 +1,28 @@
+.wishlist {
+    border: none;
+    background-color: rgba(226, 226, 226, 0.685);
+    padding: 0px 15px;
+    border-radius: 5px;
+}
+
+.wishlist:hover {
+    background-color: rgba(128, 128, 128, 0.514);
+    transition: all 0.5s;
+}
+
+
+.taps {
+    color: black ;
+}
+
+.active{
+    color: green;
+}
+
+.borderless td{
+    border: none !important;
+}
+
+.tab-pane{
+    align-items: start;
+}

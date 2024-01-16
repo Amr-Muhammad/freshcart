@@ -1,63 +1,68 @@
-<div class="py-5">
-    <div class="py-5">
+<div *ngIf="productDetails" class="row py-5">
 
-        <div *ngIf="productDetails" class="row py-5">
+    <div class="col-md-5 position-relative">
 
-            <div class="col-md-5 position-relative">
+        <div class="w-100 mt-3">
 
-                <div class="w-100 mt-3">
+            <owl-carousel-o [options]="customOptions">
 
-                    <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let slide of productDetails.images">
+                    <ng-template carouselSlide>
+                        <img [src]="slide">
+                    </ng-template>
+                </ng-container>
 
-                        <ng-container *ngFor="let slide of productDetails.images">
-                            <ng-template carouselSlide>
-                                <img [src]="slide">
-                            </ng-template>
-                        </ng-container>
-
-                    </owl-carousel-o>
-                </div>
-
-            </div>
-
-
-
-            <div class="col-md-6 offset-1">
-                <p class="mainColor textShadow">{{productDetails.category.name}}</p>
-                <h3 class="fw">{{productDetails.title}}</h3>
-                <p>{{productDetails.description}}.</p>
-                <i class="fa-solid fa-star text-warning me-1"></i>
-                <span class="me-2 fw">{{productDetails.ratingsAverage}}</span>
-                <span class="mainColor textShadow">({{productDetails.ratingsQuantity}} reviews)</span>
-                <p class="mt-2 fw fs-5">{{productDetails.price|currency:'EGP '}}</p>
-                <hr class="my-3">
-                <button class="form-control btn btn-success">Add to cart</button>
-                <hr class="my-3">
-
-                <table class="w-100 text-muted">
-
-                    <tr>
-                        <td class="w-25">Availability:</td>
-                        <td>In Stock</td>
-                    </tr>
-
-                    <tr>
-                        <td>Quantity:</td>
-                        <td>{{productDetails.quantity}}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Shipping:</td>
-                        <td class="fsxsm">01 day shipping. (Free pickup today)</td>
-                    </tr>
-
-                </table>
-
-            </div>
-
+            </owl-carousel-o>
         </div>
 
-        <!-- <div>
+    </div>
+
+
+
+    <div class="col-md-6 offset-1">
+        <p class="mainColor textShadow mb-2">{{productDetails.category.name}}</p>
+        <h3 class="fw">{{productDetails.title}}</h3>
+        <p>{{productDetails.description}}.</p>
+        <i class="fa-solid fa-star text-warning me-1"></i>
+        <span class="me-2 fw">{{productDetails.ratingsAverage}}</span>
+        <span class="mainColor textShadow">({{productDetails.ratingsQuantity}} reviews)</span>
+        <p class="mt-2 fw fs-5">{{productDetails.price|currency:'EGP '}}</p>
+        <hr class="my-3">
+        <div class="d-flex">
+
+            <button class="form-control btn btn-success w-25 me-2">Add to cart</button>
+            <button class=" wishlist">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        </div>
+        <hr class="my-3">
+
+        <table class="table borderless text-muted">
+
+            <tbody>
+                <tr>
+                    <td class="w-25 pb-3">Availability:</td>
+                    <td>In Stock</td>
+                </tr>
+
+                <tr>
+                    <td class="w-25 pb-3">Quantity:</td>
+                    <td class="w-25 pb-3">{{productDetails.quantity}}</td>
+                </tr>
+
+                <tr>
+                    <td class="w-25 pb-3">Shipping:</td>
+                    <td class="fssm pb-3">01 day shipping. (Free pickup today)</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- <div>
 
             <nav class="mb-3">
                 <div class="d-flex list-unstyled fw-bold">
@@ -108,19 +113,18 @@
             </div>
 
         </div> -->
-    </div>
-</div>
 
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="productDetails-tab" data-bs-toggle="tab" data-bs-target="#productDetails"
-            type="button" role="tab" aria-controls="productDetails" aria-selected="true">product Details</button>
+        <button class="nav-link taps active fw-bold" id="productDetails-tab" data-bs-toggle="tab"
+            data-bs-target="#productDetails" type="button" role="tab" aria-controls="productDetails"
+            aria-selected="true">Product Details</button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-            role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+        <button class="nav-link taps fw-bold" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+            type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
     </li>
 </ul>
 
@@ -162,5 +166,65 @@
         </div>
     </div>
 
-    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+    <div class="tab-pane d-flex" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+        <table class="table w-50 mx-4 table-striped text-muted">
+            <tbody>
+                <tr>
+                    <td>Weight</td>
+                    <td>1000 Grams</td>
+                </tr>
+                <tr>
+                    <td>Ingredient Type</td>
+                    <td>Vegetarian</td>
+                </tr>
+                <tr>
+                    <td>Brand</td>
+                    <td>Dmart</td>
+                </tr>
+                <tr>
+                    <td>Item Package Quantity</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Form</td>
+                    <td>Larry the Bird</td>
+                </tr>
+                <tr>
+                    <td>Manufacturer</td>
+                    <td>Dmart</td>
+                </tr>
+                <tr>
+                    <td>Net Quantity</td>
+                    <td>340.0 Gram</td>
+                </tr>
+                <tr>
+                    <td>Product Dimensions</td>
+                    <td>9.6 x 7.49 x 18.49 cm</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table w-50 table-striped text-muted">
+            <tbody>
+                <tr>
+                    <td>ASIN</td>
+                    <td>SB0025UJ75W</td>
+                </tr>
+                <tr>
+                    <td>Best Sellers Rank</td>
+                    <td>#2 in Fruits</td>
+                </tr>
+                <tr>
+                    <td>Date First Available</td>
+                    <td>30 April 2022</td>
+                </tr>
+                <tr>
+                    <td>Item Weight</td>
+                    <td>500g</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -8,7 +8,6 @@
 
 .active {
     color: var(--greenColor) !important;
-    font-weight: 600 !important;
 }
 
 .nav-link:hover {

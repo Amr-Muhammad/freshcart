@@ -23,6 +23,6 @@
     border: none !important;
 }
 
-.tab-pane{
+.noStretch{
     align-items: start;
 }

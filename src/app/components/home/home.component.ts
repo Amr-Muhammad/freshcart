@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { productsInterface } from 'src/app/interfaces/products';
+import { Category, productsInterface } from 'src/app/interfaces/products';
 import { HomeProductsService } from 'src/app/services/home-products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { BehaviorSubject } from 'rxjs';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-home',
@@ -12,19 +14,26 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 
 export class HomeComponent implements OnInit {
 
-  products: productsInterface[] = []
-  categories: any
-  searchValue: string =''
 
+  products: productsInterface[] = []
+  categories: Category[] = []
+  searchValue: string = ''
+
+  searchhInput: BehaviorSubject<string> = new BehaviorSubject('')
+  container: any
+  elementTag: any
+  public value: any
   constructor(private _homeProducts: HomeProductsService, private _router: Router) {
 
   }
 
   ngOnInit(): void {
+
+
+
     this._homeProducts.getProducts().subscribe({
       next: (response: any) => {
         this.products = response.data
-        // console.log(this.products);
 
       }
     })
@@ -34,7 +43,12 @@ export class HomeComponent implements OnInit {
         this.categories = response.data
       }
     })
+
+
+
   }
+
+
 
   customOptions: OwlOptions = {
     loop: true,

@@ -13,7 +13,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthenticationService implements OnInit {
 
   baseUrl: string = 'https://ecommerce.routemisr.com'
-  userData = new BehaviorSubject(null)
+  userData: BehaviorSubject<any> = new BehaviorSubject(null)
 
 
   constructor(private _hhttpClient: HttpClient, private _router: Router) {

@@ -12,4 +12,5 @@ export class SearchPipePipe implements PipeTransform {
     )
   }
 
+
 }

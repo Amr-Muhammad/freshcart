@@ -10,7 +10,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <ul *ngIf="isLogged" class="navbar-nav ms-3 mb-2 mb-lg-0">
+            <ul *ngIf="isLogged" class="navbar-nav ms-3 mb-2 mb-lg-0 fw-bold">
                 <li class="nav-item">
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="home">Home</a>
                 </li>
@@ -33,7 +33,7 @@
 
             </ul>
 
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold">
 
                 <li *ngIf="!isLogged" class="nav-item">
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="register">Register</a>
@@ -43,7 +43,11 @@
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="login">Login</a>
                 </li>
 
-                <li *ngIf="isLogged" class="nav-item d-flex align-items-center">
+                <li *ngIf="isLogged" class="nav-item d-flex align-items-center me-4 fs-4 clickable">
+                        <i class="counter position-relative fa-solid fa-cart-shopping text-success"></i>
+                </li>
+
+                <li *ngIf="isLogged" class="nav-item d-flex align-items-center justify-content-center">
                     <i class="fa-brands fa-facebook-f me-3 clickable"></i>
                     <i class="fa-brands fa-twitter me-3 clickable"></i>
                     <i class="fa-brands fa-instagram me-3 clickable"></i>
@@ -51,9 +55,11 @@
                     <i class="fa-brands fa-tiktok me-3 clickable"></i>
                 </li>
 
-                <li *ngIf="isLogged" class="nav-item">
+                <li *ngIf="isLogged" class="nav-item d-flex align-items-center">
                     <a class="nav-link me-3 clickable" routerLinkActive="active" (click)="logout()">Logout</a>
                 </li>
+
+                
 
             </ul>
 

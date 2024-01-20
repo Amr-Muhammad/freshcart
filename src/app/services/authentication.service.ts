@@ -54,4 +54,8 @@ export class AuthenticationService implements OnInit {
     return this._hhttpClient.post(`${this.baseUrl}/api/v1/auth/verifyResetCode`, resetCodeForm)
   }
 
+  newPassword(newPasswordForm:FormGroup):Observable<any>{
+    return this._hhttpClient.put(`${this.baseUrl}/api/v1/auth/resetPassword`,newPasswordForm)
+  }
+
 }

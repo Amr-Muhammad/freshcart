@@ -1,0 +1,9 @@
+.counter::after{
+    content: "";
+    position: absolute;
+    width: 0.625rem;
+    height: 0.625rem;
+    background-color: red;
+    top: 0;
+    transform: translate(-50%,-50%);
+}

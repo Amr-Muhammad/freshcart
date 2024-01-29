@@ -84,3 +84,11 @@
     padding: 10px 15px !important;
     font-size: 14px;
 }
+
+.fixedHeight{
+    height: 12.5rem;
+    width: 9.375rem;
+}
+.container{
+    max-width: 1500px !important;
+}

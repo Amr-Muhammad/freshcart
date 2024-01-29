@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Category, productsInterface } from 'src/app/interfaces/products';
 import { HomeProductsService } from 'src/app/services/home-products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { BehaviorSubject } from 'rxjs';
-import { __values } from 'tslib';
+import { CartService } from 'src/app/services/cart.service';
+import { addCart } from 'src/app/interfaces/addCart';
 
 @Component({
   selector: 'app-home',
@@ -14,22 +14,17 @@ import { __values } from 'tslib';
 
 export class HomeComponent implements OnInit {
 
+  number: number = 0
 
   products: productsInterface[] = []
   categories: Category[] = []
   searchValue: string = ''
 
-  searchhInput: BehaviorSubject<string> = new BehaviorSubject('')
-  container: any
-  elementTag: any
-  public value: any
-  constructor(private _homeProducts: HomeProductsService, private _router: Router) {
+  constructor(private _homeProducts: HomeProductsService, private _router: Router, private _cartService: CartService) {
 
   }
 
   ngOnInit(): void {
-
-
 
     this._homeProducts.getProducts().subscribe({
       next: (response: any) => {
@@ -44,11 +39,7 @@ export class HomeComponent implements OnInit {
       }
     })
 
-
-
   }
-
-
 
   customOptions: OwlOptions = {
     loop: true,
@@ -93,8 +84,28 @@ export class HomeComponent implements OnInit {
         items: 5
       },
       940: {
-        items: 6
+        items: 8
       }
     },
   }
+
+  addToCart(id: string) {
+
+    this._cartService.addToCart(id).subscribe({
+      next: (response: addCart) => {
+        console.log(response.numOfCartItems);
+
+        // this._cartService.noOfCartItems = response.noOfCartItems
+        this._cartService.noOfCartItems.next(response.numOfCartItems);
+
+        console.log(response);
+
+      },
+      error: (error) => {
+        console.log(error);
+
+      }
+    })
+  }
+
 }

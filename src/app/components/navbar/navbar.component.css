@@ -1,9 +1,11 @@
-.counter::after{
-    content: "";
+.noOfCartCounter{
+    font-size: 10px;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    background-color:  rgb(9, 184, 9);
     position: absolute;
-    width: 0.625rem;
-    height: 0.625rem;
-    background-color: red;
-    top: 0;
+    left: 100%;
+    top: 0%;
     transform: translate(-50%,-50%);
 }

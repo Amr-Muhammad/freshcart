@@ -1,1 +1,73 @@
-<p>cart works!</p>
+<div class="d-flex px-2">
+    <h2 class="mb-4">Shopping Cart</h2>
+    <span class="align-self-end ms-auto">Price</span>
+</div>
+<hr class="m-0">
+
+<div class="px-2" *ngIf="cartData">
+
+    <div class="mb-3 py-3" *ngFor="let item of cartData.data.products">
+
+        <div class="d-flex gap-4">
+
+            <div>
+                <img [src]="item.product.imageCover" class="fixedHeight" alt="">
+            </div>
+
+            <div class="flex-grow-1 mb-2">
+                <div class="d-flex">
+                    <p class="fs-5 m-0">{{item.product.title }}</p>
+                    <h5 class="ms-auto fw-bold">{{item.price|currency:'EGP ':'symbol'}}</h5>
+                </div>
+
+                <div>
+                    <p class="fsxsm text-success">In Stock "Availability: {{item.product.quantity}}"</p>
+                    <select #dropDown id="select" *ngIf="!input" class="form-select" name="" id="">
+                        <option [value]="item.count" selected disabled>Qty: {{item.count}}</option>
+                        <option class="form-control" value="change">Change</option>
+                    </select>
+
+
+                    <div class="d-flex col-2" *ngIf="input">
+                        <input #inputElement class="me-2 form-control" type="text">
+                        <button (click)="updateCartNumber(item.product._id)"
+                            class="btn btn-success justify-content-center">Update</button>
+                    </div>
+
+                    <button (click)="deleteCartItem(item.product._id)" class="btn btn-danger mt-3 fs-4">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+
+                <!-- <div class="d-inline-block">
+                    <input class="number form-control text-center mb-3" type="text" disabled
+                        [value]="item.count|quantity">
+                    <div class="d-flex gap-3 justify-content-around">
+                        <button class="btn-success btn">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                    </div>
+                </div> -->
+
+            </div>
+
+        </div>
+
+
+
+        <div>
+            <hr class="w-100">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <p class="fw-bold fs-3">Total Pricee</p>
+        <p class="fw-bold fs-3">{{totalPrice|currency:"EGP ":"symbol"}}</p>
+    </div>
+    <div>
+        <button class="btn btn-success fs-4 fw-bold ms-auto d-block">Checkout</button>
+    </div>
+</div>

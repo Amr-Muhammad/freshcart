@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +12,14 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class NavbarComponent implements OnInit {
 
   isLogged: boolean = true
+  number: number = 0
 
-  constructor(private _authser: AuthenticationService, private _router: Router) {
+  constructor(private _authser: AuthenticationService, private _router: Router, private _cartService: CartService) {
 
   }
 
   ngOnInit(): void {
+
     this._authser.userData.subscribe(() => {
 
       if (localStorage.getItem('token') != null) {
@@ -29,6 +33,13 @@ export class NavbarComponent implements OnInit {
       }
 
     })
+
+
+
+    this._cartService.noOfCartItems.subscribe((changeInNumber) => {
+      this.number = changeInNumber
+    })
+
   }
 
   logout() {

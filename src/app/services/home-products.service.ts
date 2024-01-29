@@ -16,7 +16,6 @@ export class HomeProductsService {
     return this._httpclient.get(`${this.baseUrl}/api/v1/products`)
   }
 
-
   getProductsDetails(id: any):Observable<any> {
     return this._httpclient.get(`${this.baseUrl}/api/v1/products/${id}`)
   }

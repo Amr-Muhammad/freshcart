@@ -1,4 +1,4 @@
-<div class="row g-0">
+<div class="firstSlider row g-0">
     <div class="col-md-12">
 
         <owl-carousel-o [options]="customOptions">
@@ -34,11 +34,11 @@
 
 </div>
 
-<div class="my-4">
+<div class="title1 my-4">
     <h2 class="fw-bold">Featured Categories</h2>
 </div>
 
-<div>
+<div class="secondSlider">
     <owl-carousel-o [options]="customOptions2">
         <ng-container *ngFor="let slide of categories">
             <ng-template carouselSlide>
@@ -52,7 +52,7 @@
     </owl-carousel-o>
 </div>
 
-<div class="d-flex justify-content-between align-items-center my-4">
+<div class="title2 d-flex justify-content-between align-items-center my-4">
 
     <h2 class="fw-bold">Popular Products</h2>
 
@@ -66,7 +66,7 @@
 
 </div>
 
-<div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2 mb-5 g-4">
+<div  class="Products row row-cols-xl-6 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-4">
 
     <div *ngFor="let item of products|searchPipe:searchValue" class="col">
 
@@ -89,7 +89,7 @@
 
             <div class="d-flex fw-bold justify-content-between align-items-center">
                 <span>{{item.price|currency:'EGP '}}</span>
-                <button class="btn btn-success fsxsm">+ Add</button>
+                <button type="button" class="btn btn-success fsxsm" (click)="addToCart(item._id)">+ Add</button>
             </div>
 
         </div>

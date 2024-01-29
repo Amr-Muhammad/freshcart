@@ -1,0 +1,20 @@
+.number{
+    width: 100px;
+}
+
+.cartContainer{
+    background-color: rgba(128, 128, 128, 0.486);
+    padding: 15px;
+}
+
+.btn{
+    padding: 3px 7px !important;
+}
+
+.form-select{
+    width: 6.25rem;
+}
+
+.changeCartManually{
+    width: 6.25rem;
+}

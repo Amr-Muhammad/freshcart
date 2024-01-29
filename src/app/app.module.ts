@@ -22,7 +22,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchPipePipe } from './pipes/search-pipe.pipe';
-
+import { QuantityPipe } from './pipes/quantity.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import { SearchPipePipe } from './pipes/search-pipe.pipe';
     ProductDetailsComponent,
     ForgetPasswordComponent,
     FooterComponent,
-    SearchPipePipe
+    SearchPipePipe, 
+    QuantityPipe
   ],
   imports: [
     BrowserModule,
@@ -48,7 +49,7 @@ import { SearchPipePipe } from './pipes/search-pipe.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule,CarouselModule,
+    RouterModule, CarouselModule,
     FormsModule,
   ],
   providers: [],

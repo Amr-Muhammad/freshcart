@@ -7,9 +7,11 @@ import { addCart } from '../interfaces/addCart';
   providedIn: 'root'
 })
 export class CartService {
+  
   baseUrl: string = 'https://ecommerce.routemisr.com'
   header: any = localStorage.getItem('token')
   noOfCartItems: BehaviorSubject<number> = new BehaviorSubject(0)
+
   options: object = {
     headers: {
       token: localStorage.getItem('token')
@@ -31,7 +33,6 @@ export class CartService {
     let body = {
       productId: id
     }
-
     return this._httpClient.post(`${this.baseUrl}/api/v1/cart`, body, this.options)
   }
 

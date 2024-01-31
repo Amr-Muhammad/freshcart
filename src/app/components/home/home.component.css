@@ -6,16 +6,81 @@
     height: 12.5rem;
 }
 
-.icon{
+.icon {
     border-right: 1px solid black;
 }
 
-.searchInput::placeholder{
+.searchInput::placeholder {
     font-weight: 400;
     color: rgba(83, 83, 83, 0.76);
     font-weight: 500;
 }
 
-.searchInput:focus{
+.searchInput:focus {
     box-shadow: 0px 0px 5px var(--greenColor);
+}
+
+.hide {
+    opacity: 0;
+}
+
+.translate {
+    animation: test 3s;
+}
+
+@keyframes test {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-5px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(0px);
+    }
+}
+
+.addToCartBtn {
+    width: 100%;
+    border: none;
+    background-color: rgb(240, 240, 240);
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    z-index: 2;
+    height: 40px;
+}
+
+.addToCartBtn:hover {
+    background-color: rgb(0, 90, 0) !important;
+}
+
+.product:hover .addToCartBtn {
+    background-color: green;
+    color: white;
+    transition: width 0.5s;
+}
+
+
+.item:hover .addToCartBtn {
+    width: 70%;
+}
+
+.wishlist{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%);
+    transition: left 0.5s;
+    height: 40px;
+    z-index: 1;
+    width: 25%;
+}
+
+.item:hover .wishlist{
+    left: 75%;
 }

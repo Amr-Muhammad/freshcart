@@ -37,16 +37,14 @@ export class RegisterComponent implements OnInit {
 
   submit(registerForm: FormGroup) {
 
-
-
     this.isLoading = true
     this._auth.register(registerForm.value).subscribe({
       next: (response) => {
         console.log(response);
         
         this.errorMessage = ''
-        // this.isLoading = false
-        // this._router.navigate(['./login'])
+        this.isLoading = false
+        this._router.navigate(['./login'])
 
       },
 
@@ -54,7 +52,7 @@ export class RegisterComponent implements OnInit {
         console.log(err);
         
         this.errorMessage = err.error.message
-        // this.isLoading = false
+        this.isLoading = false
       }
     })
 

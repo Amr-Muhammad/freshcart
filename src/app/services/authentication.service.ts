@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
@@ -10,21 +10,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 
-export class AuthenticationService implements OnInit {
+export class AuthenticationService {
 
   baseUrl: string = 'https://ecommerce.routemisr.com'
   userData: BehaviorSubject<any> = new BehaviorSubject(null)
 
-
   constructor(private _hhttpClient: HttpClient, private _router: Router) {
-
-
-  }
-
-  ngOnInit(): void {
-    if (localStorage.getItem('token') != null) {
-      this.decodeToken()
-    }
   }
 
   register(registerForm: FormGroup): Observable<any> {
@@ -37,13 +28,6 @@ export class AuthenticationService implements OnInit {
 
   decodeToken() {
     this.userData.next(jwtDecode(JSON.stringify(localStorage.getItem('token'))))
-    console.log(this.userData.getValue());
-  }
-
-  logout() {
-    localStorage.removeItem('token')
-    this._router.navigate(['./login'])
-    this.userData.next(null)
   }
 
   forgetPassword(email: any): Observable<any> {
@@ -54,8 +38,14 @@ export class AuthenticationService implements OnInit {
     return this._hhttpClient.post(`${this.baseUrl}/api/v1/auth/verifyResetCode`, resetCodeForm)
   }
 
-  newPassword(newPasswordForm:FormGroup):Observable<any>{
-    return this._hhttpClient.put(`${this.baseUrl}/api/v1/auth/resetPassword`,newPasswordForm)
+  newPassword(newPasswordForm: FormGroup): Observable<any> {
+    return this._hhttpClient.put(`${this.baseUrl}/api/v1/auth/resetPassword`, newPasswordForm)
+  }
+
+  logout() {
+    localStorage.removeItem('token')
+    this._router.navigate(['./login'])
+    this.userData.next(null)
   }
 
 }

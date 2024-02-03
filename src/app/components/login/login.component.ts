@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { allCart } from 'src/app/interfaces/allCart';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
   search: string = ''
 
 
-  constructor(private _authser: AuthenticationService, private _router: Router) {
+  constructor(private _authser: AuthenticationService, private _router: Router, private _cartService: CartService) {
 
     if (localStorage.getItem('token') != null) {
     }
@@ -39,15 +41,19 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true
 
+
     this._authser.login(loginform.value).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token)
         this._authser.decodeToken()
+        this._cartService.options.headers.token = response.token;
         this.isLoading = true
         this._router.navigate(['./home'])
-
-      },
-
+        this._cartService.getAllCart().subscribe((response: allCart) => {
+          this._cartService.noOfCartItems.next(response.numOfCartItems)
+        })
+      }
+      ,
       error: (err) => {
         this.errorMessage = err.error.message
         this.isLoading = false

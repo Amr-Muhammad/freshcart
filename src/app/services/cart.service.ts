@@ -1,31 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { addCart } from '../interfaces/addCart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  
+
   baseUrl: string = 'https://ecommerce.routemisr.com'
   header: any = localStorage.getItem('token')
   noOfCartItems: BehaviorSubject<number> = new BehaviorSubject(0)
 
-  options: object = {
+  options: any = {
     headers: {
       token: localStorage.getItem('token')
     }
   }
 
   constructor(private _httpClient: HttpClient) {
-    this.getAllCart().subscribe({
-      next: (response: addCart) => {
-
-        this.noOfCartItems.next(response.numOfCartItems)
-
-      }
-    })
   }
 
 
@@ -49,6 +41,10 @@ export class CartService {
 
   deleteCartItem(id: string): Observable<any> {
     return this._httpClient.delete(`${this.baseUrl}/api/v1/cart/${id}`, this.options)
+  }
+
+  clearCart(): Observable<any> {
+    return this._httpClient.delete(`${this.baseUrl}/api/v1/cart`, this.options)
   }
 
 }

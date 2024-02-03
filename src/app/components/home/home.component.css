@@ -2,9 +2,9 @@
     --greenColor: rgb(9, 184, 9);
 }
 
-.fixedH {
+/* .fixedH {
     height: 12.5rem;
-}
+} */
 
 .icon {
     border-right: 1px solid black;
@@ -25,10 +25,10 @@
 }
 
 .translate {
-    animation: test 3s;
+    animation: fadeUp 3s;
 }
 
-@keyframes test {
+@keyframes fadeUp {
     0% {
         opacity: 0;
     }

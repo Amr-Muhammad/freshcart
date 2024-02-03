@@ -35,7 +35,7 @@
 
         <div class="mb-2">
             <label for="password">Password :</label>
-            <input formControlName="password" class="form-control" type="text" id="password">
+            <input formControlName="password" class="form-control" type="password" id="password">
         </div>
         <div class="alert alert-danger"
             *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
@@ -50,7 +50,7 @@
     <div id="rePassword">
         <div class="mb-2">
             <label for="repassword">Repassword :</label>
-            <input formControlName="rePassword" class="form-control" type="text" id="repassword">
+            <input formControlName="rePassword" class="form-control" type="password" id="repassword">
         </div>
         <div class="alert alert-danger"
             *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched">

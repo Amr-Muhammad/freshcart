@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category, productsInterface } from 'src/app/interfaces/products';
 import { HomeProductsService } from 'src/app/services/home-products.service';
@@ -14,12 +14,9 @@ import { addCart } from 'src/app/interfaces/addCart';
 
 export class HomeComponent implements OnInit {
 
-  number: number = 0
   products: productsInterface[] = []
   categories: Category[] = []
   searchValue: string = ''
-
-  @ViewChild('addToCartBtn', { static: false }) addToCartBtn?: ElementRef
 
   constructor(private _homeProducts: HomeProductsService, private _router: Router, private _cartService: CartService) {
 
@@ -85,15 +82,14 @@ export class HomeComponent implements OnInit {
         items: 5
       },
       940: {
-        items: 8
+        items: 7
       }
     },
   }
 
   addToCart(id: string, e: Event) {
-
-    let btnInnerText = e.target as HTMLElement
-    btnInnerText.innerText = 'Adding...'
+    
+    (e.target as HTMLElement).innerText = 'Adding...'
 
     this._cartService.addToCart(id).subscribe({
 
@@ -101,16 +97,13 @@ export class HomeComponent implements OnInit {
         this._cartService.noOfCartItems.next(response.numOfCartItems);
 
 
-        btnInnerText.innerText = 'Add to Cart';
-          // (document.getElementById(id) as HTMLElement).classList.replace('hide', 'show')
-          (document.getElementById(id) as HTMLElement).classList.add('translate')
+        (e.target as HTMLElement).innerText = 'Add to Cart';
+        (document.getElementById(id) as HTMLElement).classList.add('translate')
 
         setTimeout(() => {
-          // (document.getElementById(id) as HTMLElement).classList.replace('show', 'hide')
           (document.getElementById(id) as HTMLElement).classList.remove('translate')
 
-          console.log('sh8al');
-        }, 3000);
+        }, 1500);
 
       },
 

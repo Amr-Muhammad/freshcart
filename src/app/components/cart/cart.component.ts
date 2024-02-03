@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { allCart } from 'src/app/interfaces/allCart';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -7,55 +7,42 @@ import { CartService } from 'src/app/services/cart.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit, AfterViewChecked {
+export class CartComponent implements OnInit {
 
-  @ViewChild('dropDown', { static: false }) dropDown?: ElementRef
   @ViewChild('inputElement', { static: false }) inputElement?: ElementRef
 
   input: boolean = false
   cartData: allCart | null = null
   count: any
-  totalPrice: any
-
+  noOfCartItems: number = 0
   constructor(private _cartService: CartService) {
 
   }
 
   ngOnInit(): void {
 
+    // if (this._cartService.noOfCartItems.getValue() != 0) {
     this._cartService.getAllCart().subscribe({
+
       next: (response) => {
         this.cartData = response
-        console.log(this.cartData);
-        this.totalPrice = response.data.totalCartPrice
-
-      },
+      }
+      ,
       error: (err) => {
         console.log(err);
-
       }
     })
   }
+  // }
 
-  ngAfterViewChecked(): void {
-
-    this.dropDown?.nativeElement.addEventListener('change', () => {
-      if (this.dropDown?.nativeElement.value == 'change') {
-        this.input = true
-      }
-    })
-
-  }
 
   updateCartNumber(id: string) {
     this.count = this.inputElement?.nativeElement.value
     this._cartService.updateCartNumber(id, this.count).subscribe({
       next: (response: allCart) => {
-        console.log(response);
 
         this.cartData = response
         this.input = false
-        this.totalPrice = response.data.totalCartPrice
 
       }, error(err) {
         console.log(err);
@@ -64,13 +51,70 @@ export class CartComponent implements OnInit, AfterViewChecked {
     })
   }
 
-  deleteCartItem(id: string) {
-    this._cartService.deleteCartItem(id).subscribe({
-      next: (response) => {
-        this.cartData = response
-        this.totalPrice = response.data.totalCartPrice
+  deleteCartItem(id: string, e: any) {
 
-      }, error(err) {
+    (e.target as HTMLElement).innerText = ' Deleting Item...';
+
+    this._cartService.deleteCartItem(id).subscribe({
+      next: (response: allCart) => {
+        this.cartData = response;
+        console.log(this.cartData);
+
+        (e.target as HTMLElement).innerText = ' Delete Item';
+        this._cartService.noOfCartItems.next(response.numOfCartItems)
+        if (this._cartService.noOfCartItems.getValue() == 0) {
+          this.clearCart()
+        }
+      }
+      ,
+      error(err) {
+        console.log(err);
+
+      },
+    })
+
+  }
+
+  changeQuantityManual(id: any, e: any) {
+
+
+    let newQuantity = (e.target?.options as HTMLOptionsCollection).item(e.target.selectedIndex)?.value
+
+    if ((e.target.options as HTMLOptionsCollection).item(e.target.selectedIndex)?.value != 'change') {
+
+      this._cartService.updateCartNumber(id, newQuantity).subscribe({
+        next: (response: allCart) => {
+          console.log(response);
+
+          this.cartData = response;
+
+        }, error(err) {
+          console.log(err);
+
+        },
+      })
+
+    }
+    else {
+
+    }
+
+
+
+    // this.updateCartNumber(id)
+  }
+
+  clearCart() {
+    this._cartService.clearCart().subscribe({
+      next: (respone) => {
+        this.cartData = null
+        console.log(respone);
+
+        this._cartService.noOfCartItems.next(0)
+
+      }
+      ,
+      error(err) {
         console.log(err);
 
       },

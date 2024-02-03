@@ -45,7 +45,7 @@
 
                 <li *ngIf="isLogged" class="nav-item d-flex align-items-center me-4 fs-4 clickable" routerLink="/cart">
                     <i class="position-relative fa-solid fa-cart-shopping text-success">
-                        <span *ngIf="number" class="noOfCartCounter">{{number}}</span>
+                        <span *ngIf="noOfCartItems" class="noOfCartCounter">{{noOfCartItems}}</span>
                         <!-- <i class="cartSpinner fa-solid fa-spinner"></i> -->
                     </i>
                 </li>
@@ -59,7 +59,7 @@
                 </li>
 
                 <li *ngIf="isLogged" class="nav-item d-flex align-items-center">
-                    <a class="nav-link me-3 clickable" (click)="logout()">Logout</a>
+                    <span class="nav-link me-3 clickable" (click)="logout()">Logout</span>
                 </li>
 
 

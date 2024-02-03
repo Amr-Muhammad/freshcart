@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { addCart } from 'src/app/interfaces/addCart';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -12,7 +12,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class NavbarComponent implements OnInit {
 
   isLogged: boolean = true
-  number: number = 0
+  noOfCartItems: number = 0
 
   constructor(private _authser: AuthenticationService, private _router: Router, private _cartService: CartService) {
 
@@ -36,8 +36,22 @@ export class NavbarComponent implements OnInit {
 
 
 
+    this._cartService.getAllCart().subscribe({
+      next: (response: addCart) => {
+        this._cartService.noOfCartItems.next(response.numOfCartItems)
+        this.noOfCartItems = response.numOfCartItems
+      }
+      ,
+      error(err) {
+        // console.log();
+        
+      },
+    })
+
+
+
     this._cartService.noOfCartItems.subscribe((changeInNumber) => {
-      this.number = changeInNumber
+      this.noOfCartItems = changeInNumber
     })
 
   }

@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class ProductsComponent {
 
+  mama: string = ''
+
+  addPhrase() {
+    this.mama = 'هويدا عبدالله محمد'
+  }
+
+  delete(){
+    this.mama=''
+  }
+
 }

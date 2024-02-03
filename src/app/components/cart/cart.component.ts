@@ -63,8 +63,8 @@ export class CartComponent implements OnInit {
         (e.target as HTMLElement).innerText = ' Delete Item';
         this._cartService.noOfCartItems.next(response.numOfCartItems)
         if (this._cartService.noOfCartItems.getValue() == 0) {
-          // this.clearCart()
           this.cartData = null
+          this.clearCart()
         }
       }
       ,
@@ -81,7 +81,7 @@ export class CartComponent implements OnInit {
 
     let newQuantity = (e.target?.options as HTMLOptionsCollection).item(e.target.selectedIndex)?.value
 
-    if ((e.target.options as HTMLOptionsCollection).item(e.target.selectedIndex)?.value != 'change') {
+    // if ((e.target.options as HTMLOptionsCollection).item(e.target.selectedIndex)?.value != 'change') {
 
       this._cartService.updateCartNumber(id, newQuantity).subscribe({
         next: (response: allCart) => {
@@ -95,14 +95,7 @@ export class CartComponent implements OnInit {
         },
       })
 
-    }
-    else {
-
-    }
-
-
-
-    // this.updateCartNumber(id)
+    // }
   }
 
   clearCart() {

@@ -12,11 +12,9 @@
         <div class="alert alert-danger" *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
             <p *ngIf="registerForm.get('name')?.getError('required')" class="m-0 p-0">Username is required.</p>
             <p *ngIf="registerForm.get('name')?.getError('maxlength')" class="m-0 p-0">The maximum length of the
-                username
-                is 8 characters</p>
-            <p *ngIf="registerForm.get('name')?.getError('minlength')" class="m-0 p-0">The minimum length of the
-                username
-                is 3 characters</p>
+                username is 8 characters</p>
+            <p *ngIf="registerForm.get('name')?.getError('minlength')" class="m-0 p-0">The minimum length of
+                the usernameis 3 characters</p>
         </div>
     </div>
 
@@ -26,7 +24,7 @@
             <input formControlName="email" class="form-control" type="text" id="email">
         </div>
         <div class="alert alert-danger" *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
-            <p class="m-0">Enter a valid email.</p>
+            <p class="m-0">Enter a valid email</p>
         </div>
     </div>
 
@@ -41,8 +39,7 @@
             *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
             <p *ngIf="registerForm.get('password')?.getError('required')" class="m-0">Password is required</p>
             <p *ngIf="registerForm.get('password')?.getError('pattern')" class="m-0">Minimum eight characters, at least
-                one
-                uppercase letter, one lowercase letter, one number and one special character </p>
+                one uppercase letter, one lowercase letter, one number and one special character </p>
         </div>
     </div>
 

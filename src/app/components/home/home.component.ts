@@ -88,29 +88,28 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(id: string, e: Event) {
-    
+
     (e.target as HTMLElement).innerText = 'Adding...'
 
     this._cartService.addToCart(id).subscribe({
 
       next: (response: addCart) => {
         this._cartService.noOfCartItems.next(response.numOfCartItems);
-
-
+      }
+      ,
+      error: (error) => {
+        console.log(error);
+      }
+      ,
+      complete() {
         (e.target as HTMLElement).innerText = 'Add to Cart';
         (document.getElementById(id) as HTMLElement).classList.add('translate')
 
         setTimeout(() => {
           (document.getElementById(id) as HTMLElement).classList.remove('translate')
-
         }, 1500);
-
       },
 
-
-      error: (error) => {
-        console.log(error);
-      }
     })
   }
 

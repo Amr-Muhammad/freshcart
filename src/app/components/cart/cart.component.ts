@@ -63,7 +63,8 @@ export class CartComponent implements OnInit {
         (e.target as HTMLElement).innerText = ' Delete Item';
         this._cartService.noOfCartItems.next(response.numOfCartItems)
         if (this._cartService.noOfCartItems.getValue() == 0) {
-          this.clearCart()
+          // this.clearCart()
+          this.cartData = null
         }
       }
       ,
@@ -108,15 +109,11 @@ export class CartComponent implements OnInit {
     this._cartService.clearCart().subscribe({
       next: (respone) => {
         this.cartData = null
-        console.log(respone);
-
         this._cartService.noOfCartItems.next(0)
-
       }
       ,
       error(err) {
         console.log(err);
-
       },
     })
   }

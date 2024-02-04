@@ -12,6 +12,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { authGuardGuard } from './guards/auth-guard.guard';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "home", pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'productDetails/:id', canActivate: [authGuardGuard], component: ProductDetailsComponent },
   { path: 'categories', canActivate: [authGuardGuard], component: CategoriesComponent },
   { path: 'brands', canActivate: [authGuardGuard], component: BrandsComponent },
+  { path: 'checkout/:id', canActivate: [authGuardGuard], component: CheckoutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
@@ -29,7 +31,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

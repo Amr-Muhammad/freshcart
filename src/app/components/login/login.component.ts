@@ -10,6 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   isLoading: boolean = false
@@ -18,11 +19,8 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private _authser: AuthenticationService, private _router: Router, private _cartService: CartService) {
-
     if (localStorage.getItem('token') != null) {
     }
-
-
   }
 
   ngOnInit(): void {
@@ -41,14 +39,13 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true
 
-
     this._authser.login(loginform.value).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token)
         this._authser.decodeToken()
-        this._cartService.options.headers.token = response.token;
         this.isLoading = true
         this._router.navigate(['./home'])
+        this._cartService.options.headers.token = response.token;
         this._cartService.getAllCart().subscribe((response: allCart) => {
           this._cartService.noOfCartItems.next(response.numOfCartItems)
         })

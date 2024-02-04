@@ -15,8 +15,8 @@ export class CartComponent implements OnInit {
   cartData: allCart | null = null
   count: any
   noOfCartItems: number = 0
-  constructor(private _cartService: CartService) {
 
+  constructor(private _cartService: CartService) {
   }
 
   ngOnInit(): void {
@@ -34,7 +34,6 @@ export class CartComponent implements OnInit {
     })
   }
   // }
-
 
   updateCartNumber(id: string) {
     this.count = this.inputElement?.nativeElement.value
@@ -78,22 +77,21 @@ export class CartComponent implements OnInit {
 
   changeQuantityManual(id: any, e: any) {
 
-
     let newQuantity = (e.target?.options as HTMLOptionsCollection).item(e.target.selectedIndex)?.value
 
     // if ((e.target.options as HTMLOptionsCollection).item(e.target.selectedIndex)?.value != 'change') {
 
-      this._cartService.updateCartNumber(id, newQuantity).subscribe({
-        next: (response: allCart) => {
-          console.log(response);
+    this._cartService.updateCartNumber(id, newQuantity).subscribe({
+      next: (response: allCart) => {
+        console.log(response);
 
-          this.cartData = response;
+        this.cartData = response;
 
-        }, error(err) {
-          console.log(err);
+      }, error(err) {
+        console.log(err);
 
-        },
-      })
+      },
+    })
 
     // }
   }
@@ -110,6 +108,7 @@ export class CartComponent implements OnInit {
       },
     })
   }
+
 
 }
 

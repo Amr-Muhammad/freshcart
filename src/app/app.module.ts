@@ -23,6 +23,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { QuantityPipe } from './pipes/quantity.pipe';
     ForgetPasswordComponent,
     FooterComponent,
     SearchPipePipe, 
-    QuantityPipe
+    QuantityPipe,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

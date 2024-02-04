@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -46,5 +47,23 @@ export class CartService {
   clearCart(): Observable<any> {
     return this._httpClient.delete(`${this.baseUrl}/api/v1/cart`, this.options)
   }
+
+  checkoutCash(id: string, cartForm: FormGroup): Observable<any> {
+    let body = {
+      shippingAddress: {
+        cartForm
+      }
+    }
+    return this._httpClient.post(`${this.baseUrl}/api/v1/orders/${id}`, body, this.options)
+  }
+
+  checkoutOnline(id: string, shippingAddress: FormGroup): Observable<any> {
+    let body = {
+      shippingAddress
+    }
+
+    return this._httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${id}?url=http://localhost:4200`, body, this.options)
+  }
+
 
 }

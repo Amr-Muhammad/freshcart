@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { allCart } from 'src/app/interfaces/allCart';
+import { EMPTY } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -43,18 +43,27 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         localStorage.setItem('token', response.token)
         this._authser.decodeToken()
-        this.isLoading = true
-        this._router.navigate(['./home'])
         this._cartService.options.headers.token = response.token;
-        this._cartService.getAllCart().subscribe((response: allCart) => {
-          this._cartService.noOfCartItems.next(response.numOfCartItems)
+        this._cartService.getAllCart().subscribe({
+          next: () => {
+            this._cartService.noOfCartItems.next(response.numOfCartItems)
+          },
+          error: (err) => {
+            console.log(err);
+          }
         })
       }
       ,
       error: (err) => {
         this.errorMessage = err.error.message
         this.isLoading = false
+        return EMPTY;
       }
+      ,
+      complete: () => {
+        this._router.navigate(['./home'])
+
+      },
     })
 
   }

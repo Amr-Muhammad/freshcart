@@ -3,9 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
-
-
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -30,7 +27,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('token') != null){
+    if (localStorage.getItem('token') != null) {
       this._router.navigate(['/home'])
     }
   }
@@ -41,7 +38,7 @@ export class RegisterComponent implements OnInit {
     this._auth.register(registerForm.value).subscribe({
       next: (response) => {
         console.log(response);
-        
+
         this.errorMessage = ''
         this.isLoading = false
         this._router.navigate(['./login'])
@@ -50,7 +47,7 @@ export class RegisterComponent implements OnInit {
 
       error: (err) => {
         console.log(err);
-        
+
         this.errorMessage = err.error.message
         this.isLoading = false
       }
@@ -65,15 +62,12 @@ export class RegisterComponent implements OnInit {
 
     if (form.controls['rePassword'].value == form.controls['password'].value) {
       return null
-
-    } else {
+    }
+    else {
       form.get('rePassword')?.setErrors({ matching: "Password and repassword aren't matched" })
       return null
     }
-
   }
-
-
 
 }
 
@@ -82,7 +76,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-
+//! rage3 elgoz2 da
 // passwordMatching(form: any) {
 
 //   if (form.controls['password'].value == form.controls['rePassword'].value) {

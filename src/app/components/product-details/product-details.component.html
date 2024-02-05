@@ -1,8 +1,8 @@
-<div *ngIf="productDetails" class="row py-5">
+<div *ngIf="productDetails" class="row g py-5">
 
-    <div class="col-md-5 position-relative">
+    <div class="col-md-5 d-flex justify-content-end position-relative">
 
-        <div class="w-100 mt-3">
+        <div class="w-75 mt-3">
 
             <owl-carousel-o [options]="customOptions">
 
@@ -19,49 +19,54 @@
 
 
 
-    <div class="col-md-6 offset-1">
+    <div class="col-md-6">
 
-        <p class="mainColor textShadow mb-2">{{productDetails.category.name}}</p>
-        <h3 class="fw">{{productDetails.title}}</h3>
-        <p>{{productDetails.description}}.</p>
-        <i class="fa-solid fa-star text-warning me-1"></i>
-        <span class="me-2 fw">{{productDetails.ratingsAverage}}</span>
-        <span class="mainColor textShadow">({{productDetails.ratingsQuantity}} reviews)</span>
-        <p class="mt-2 fw fs-5">{{productDetails.price|currency:'EGP '}}</p>
-        <hr class="my-3">
+        <div class="d-flex justify-content-center">
 
-        <div class="d-flex">
-            <button class="btn btn-success w-25 me-2">Add to cart</button>
-            <button class="wishlist">
-                <i class="fa-regular fa-heart"></i>
-            </button>
+            <div>
+                <p class="mainColor textShadow mb-2">{{productDetails.category.name}}</p>
+                <h3 class="fw">{{productDetails.title}}</h3>
+                <p>{{productDetails.description}}.</p>
+                <i class="fa-solid fa-star text-warning me-1"></i>
+                <span class="me-2 fw">{{productDetails.ratingsAverage}}</span>
+                <span class="mainColor textShadow">({{productDetails.ratingsQuantity}} reviews)</span>
+                <p class="mt-2 fw fs-5">{{productDetails.price|currency:'EGP '}}</p>
+                <hr class="my-3">
+
+                <div class="d-flex">
+                    <button class="btn btn-success w-25 me-2">Add to cart</button>
+                    <button class="wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+
+                <hr class="my-3">
+
+                <table class="table borderless text-muted">
+
+                    <tbody>
+                        <tr>
+                            <td class="w-25 pb-3">Availability:</td>
+                            <td>In Stock</td>
+                        </tr>
+
+                        <tr>
+                            <td class="w-25 pb-3">Quantity:</td>
+                            <td class="w-25 pb-3">{{productDetails.quantity}}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="w-25 pb-3">Shipping:</td>
+                            <td class="fssm pb-3">01 day shipping. (Free pickup today)</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
         </div>
-
-        <hr class="my-3">
-
-        <table class="table borderless text-muted">
-
-            <tbody>
-                <tr>
-                    <td class="w-25 pb-3">Availability:</td>
-                    <td>In Stock</td>
-                </tr>
-
-                <tr>
-                    <td class="w-25 pb-3">Quantity:</td>
-                    <td class="w-25 pb-3">{{productDetails.quantity}}</td>
-                </tr>
-
-                <tr>
-                    <td class="w-25 pb-3">Shipping:</td>
-                    <td class="fssm pb-3">01 day shipping. (Free pickup today)</td>
-                </tr>
-            </tbody>
-
-        </table>
-
     </div>
-
 </div>
 
 <!-- <div>

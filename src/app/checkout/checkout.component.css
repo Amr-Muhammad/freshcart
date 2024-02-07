@@ -1,12 +1,32 @@
 .deliveryBtns {
     height: 150px;
-    border: 3px solid black;
+    border: 1px solid var(--mainColor);
     border-radius: 8px;
     background-color: white;
 }
 
 .active {
-    border-color: rgb(9, 184, 9);
-    background-color: rgba(9, 184, 9, 0.5);
+    border-color: var(--bgColor);
+    background-color: var(--mainColor);
     color: black !important;
+}
+
+.proceedToPay{
+    background-color: var(--mainColor);
+    color: black;
+    border: 2px solid var(--bgColor);
+    font-weight: 700;
+    padding: 8px 0px;
+}
+
+.count{
+    color: var(--greenColor);
+    font-weight: bold;
+}
+
+.storeText{
+    color: var(--greenColor);
+    &:hover{
+        text-decoration: underline;
+    }
 }

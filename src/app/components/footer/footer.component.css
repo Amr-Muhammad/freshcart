@@ -1,6 +1,24 @@
-.fixedPixels{
+.fixedPixels {
     width: 50px;
 }
-.fixedPixels2{
+
+.fixedPixels2 {
     width: 100px;
+}
+
+.footerContainer {
+    background-color: var(--mainColor)
+}
+
+.footernBtn {
+    /* background-color: #4c7a4c; */
+    background-color: #507450;
+    background-color: #bbcfbb;
+    color: white !important;
+    transition: all 0.2s;
+}
+
+.footernBtn:hover {
+    background-color: #6a8f6a;
+    /* background-color: #355735; */
 }

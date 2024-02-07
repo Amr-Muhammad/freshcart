@@ -1,5 +1,8 @@
 :root {
-    --greenColor: rgb(9, 184, 9);
+    --greenColor: rgb(0, 150, 0);
+    --mainColor: #B6C4B6;
+    --bgColor: #EEF0E5;
+    --btns: #163020;
 }
 
 .clickable {
@@ -28,12 +31,6 @@
 
 .gray {
     color: gray;
-}
-
-.borderColor:hover {
-    border-color: var(--greenColor) !important;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease-in-out;
 }
 
 .mainColor {
@@ -70,7 +67,7 @@
     transition: all 0.5s;
 }
 
-.active2 {
+/* .active2 {
     content: '';
     position: absolute;
     width: 100%;
@@ -83,12 +80,13 @@
 .alert {
     padding: 10px 15px !important;
     font-size: 14px;
-}
+}*/
 
-.fixedHeight{
+.fixedHeight {
     height: 12.5rem;
     width: 9.375rem;
-}
+} 
+
 /* .container{
     max-width: 1500px !important;
 } */

@@ -1,28 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from '../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
+import { allCart } from '../interfaces/allCart';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit {
 
-  deliveryFlag: boolean = false
+  deliveryFlag: boolean = true
+  cartData: allCart | null = null
 
   constructor(private _cartService: CartService, private _ActivatedRoute: ActivatedRoute) {
 
   }
 
+  ngOnInit(): void {
+
+    this._cartService.getAllCart().subscribe({
+      next: (response) => {
+        this.cartData = response
+      }
+    })
+
+  }
+
   checkoutFormDelivery: FormGroup = new FormGroup(({
-    details: new FormControl(null, Validators.required),
+    name: new FormControl(null, Validators.required),
+    address: new FormControl(null, Validators.required),
     phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
     city: new FormControl(null, Validators.required),
   }))
 
-  checkoutFormCash: FormGroup = new FormGroup(({
+  checkoutFormStore: FormGroup = new FormGroup(({
     name: new FormControl(null, Validators.required),
     phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
   }))
@@ -30,18 +43,19 @@ export class CheckoutComponent {
   delivery() {
     this.deliveryFlag = true
     document.getElementById('delivery')?.classList.add('active');
-    document.getElementById('cash')?.classList.remove('active');
+    document.getElementById('store')?.classList.remove('active');
+    this.checkoutFormDelivery.reset()
   }
 
-  cash() {
+  store() {
     this.deliveryFlag = false
-    document.getElementById('cash')?.classList.add('active');
+    document.getElementById('store')?.classList.add('active');
     document.getElementById('delivery')?.classList.remove('active');
-
+    this.checkoutFormStore.reset()
   }
 
   cartForm(cartForm: FormGroup) {
-    
+
     (document.querySelector('.proceedToPay') as HTMLElement).innerText = 'Prossessing...';
     this._ActivatedRoute.params.subscribe(id => {
       this._cartService.checkoutOnline(id['id'], cartForm.value).subscribe({

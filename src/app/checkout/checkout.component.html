@@ -1,46 +1,83 @@
-<div class="row">
+<div class="row px-4 g-5">
 
-    <div class="col-4">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam perspiciatis consectetur hic vel, quaerat quo
-            ex doloremque atque! Accusantium rem reprehenderit suscipit assumenda labore officia deleniti culpa nobis
-            repellendus ea!</p>
-    </div>
-
-    <div class="col-8">
+    <div class="col-xl-3 col-lg-4 text-center">
 
         <div>
-            <h3>Shipping & Delivery</h3>
-            <p>Select how you would like to receive your order</p>
+            <h2>Shopping Cart</h2>
+            <p>
+                Back to
+                <span class="storeText clickable fst-italic fw-bold" routerLink="/home">Store</span>
+            </p>
         </div>
 
-        <div class="row g-3">
+        <div *ngIf="cartData">
 
-            <div class="col-lg-6">
+            <div class="overflow-y-auto" style="height: 25rem;">
+
+                <div *ngFor="let item of cartData.data.products">
+                    <div class="d-flex align-items-center justify-content-around">
+
+                        <img class="w-25" [src]="item.product.imageCover" alt="">
+
+                        <div>
+                            <span class="me-1 count">{{item.count}}</span>
+                            <span>Item</span>
+                        </div>
+
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <div class="d-flex justify-content-around fw-bold fs-5">
+                    <p>Total Price</p>
+                    <p class="text-end">{{cartData.data.totalCartPrice|currency: "EGP "}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xl-9 col-lg-8 ">
+
+        <div class="mt-lg-0 mt-5 text-lg-start text-center">
+            <h3>Shipping & Delivery</h3>
+            <p class="m-0">Select how you would like to receive your order</p>
+        </div>
+
+        <div class="row g-3 my-5">
+
+            <div class="col-lg-6 m-0">
                 <button id="delivery" (click)="delivery()" type="button"
-                    class="w-100 deliveryBtns d-flex justify-content-center align-items-center flex-column fw-bold">
+                    class="w-100 active deliveryBtns d-flex justify-content-center align-items-center flex-column fw-bold">
                     <i class="fa-solid fa-truck fs-1"></i>
                     <span class="test">Ship to my address</span>
                 </button>
             </div>
 
-            <div class="col-lg-6">
-                <button id="cash" (click)="cash()" type="button"
-                    class="w-100 active deliveryBtns d-flex justify-content-center align-items-center flex-column fw-bold">
+            <div class="col-lg-6 m-0 mt-3">
+                <button id="store" (click)="store()" type="button"
+                    class="w-100  deliveryBtns d-flex justify-content-center align-items-center flex-column fw-bold">
                     <i class="fa-solid fa-box-archive fs-1"></i>
                     <span>Pick up from store</span>
                 </button>
             </div>
         </div>
 
-        <div class="mt-5">
+        <div>
             <div *ngIf="deliveryFlag else elseFlag">
                 <form (ngSubmit)="cartForm(checkoutFormDelivery)" [formGroup]="checkoutFormDelivery">
 
 
                     <div class="row g-3">
                         <div class="col-6 d-flex flex-column">
+                            <label class="fw-bold" for="details">Name</label>
+                            <input formControlName="name" class="form-control" type="text" id="details">
+                        </div>
+                        <div class="col-6 d-flex flex-column">
                             <label class="fw-bold" for="details">Adress</label>
-                            <input formControlName="details" class="form-control" type="text" id="details">
+                            <input formControlName="address" class="form-control" type="text" id="details">
                         </div>
                         <div class="col-6 d-flex flex-column">
                             <label class="fw-bold" for="phone">Phone</label>
@@ -50,12 +87,11 @@
                             <label class="fw-bold" for="city">City</label>
                             <input formControlName="city" class="form-control" type="text" id="city">
                         </div>
-
                     </div>
 
                     <div class="mt-4">
                         <button [disabled]="checkoutFormDelivery.invalid"
-                            class="proceedToPay btn btn-success d-block px-5 mx-auto">Proceed
+                            class="proceedToPay btn d-block px-5 mx-auto">Proceed
                             to
                             Pay</button>
                     </div>
@@ -64,7 +100,7 @@
             </div>
 
             <ng-template #elseFlag>
-                <form (ngSubmit)="cartForm(checkoutFormCash)" [formGroup]="checkoutFormCash">
+                <form (ngSubmit)="cartForm(checkoutFormStore)" [formGroup]="checkoutFormStore">
 
                     <div class="row g-3">
                         <div class="col-6 d-flex flex-column">
@@ -72,13 +108,22 @@
                             <input formControlName="name" class="form-control" type="text" id="details">
                         </div>
                         <div class="col-6 d-flex flex-column">
+                            <label class="fw-bold" for="phone">Adress (Optional)</label>
+                            <input class="form-control" type="tel" id="phone">
+                        </div>
+                        <div class="col-6 d-flex flex-column">
                             <label class="fw-bold" for="phone">Phone</label>
                             <input formControlName="phone" class="form-control" type="tel" id="phone">
                         </div>
+                        <div class="col-6 d-flex flex-column">
+                            <label class="fw-bold" for="phone">City (Optional)</label>
+                            <input class="form-control" type="tel" id="phone">
+                        </div>
+
                     </div>
 
                     <div class="mt-4">
-                        <button [disabled]="checkoutFormCash.invalid"
+                        <button [disabled]="checkoutFormStore.invalid"
                             class="proceedToPay btn btn-success d-block px-5 mx-auto">Proceed
                             to Pay</button>
                     </div>

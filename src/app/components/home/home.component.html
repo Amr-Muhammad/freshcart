@@ -78,7 +78,7 @@
 
 <div class="Products row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-4">
 
-    <div *ngFor="let item of products|searchPipe:searchValue" class="col product">
+    <div *ngFor="let item of products|searchPipe:searchValue">
 
         <div class="item p-3 pb-0 border border-1 borderColor rounded-3">
 
@@ -107,7 +107,7 @@
                         Add to Cart
                     </button>
                     <button class="wishlist">
-                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-heart"></i>
                     </button>
                 </div>
 

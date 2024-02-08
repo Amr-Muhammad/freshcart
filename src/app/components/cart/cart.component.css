@@ -1,7 +1,3 @@
-/* .number {
-    width: 100px;
-} */
-
 .form-select {
     width: 6.25rem;
 }
@@ -13,16 +9,16 @@
 .checkoutBtn {
     padding: .5rem 1.875rem;
     border-radius: 1.875rem;
-    color: green;
+    color: var(--greenColor);
     outline: none;
-    border: green 2px solid;
+    border: var(--bgColor) 2px solid;
     background-color: white;
     transition: all 0.2s;
 }
 
 .checkoutBtn:hover {
     color: white;
-    background-color: green;
+    background-color: var(--mainColor);
 
 }
 .removeAll{

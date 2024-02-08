@@ -1,7 +1,7 @@
 .deliveryBtns {
     height: 150px;
     border: 1px solid var(--mainColor);
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: white;
 }
 
@@ -16,7 +16,8 @@
     color: black;
     border: 2px solid var(--bgColor);
     font-weight: 700;
-    padding: 8px 0px;
+    padding: 10px 0px;
+    border-radius: 20px;
 }
 
 .count{

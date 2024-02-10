@@ -24,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AllordersComponent } from './allorders/allorders.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     FooterComponent,
     SearchPipePipe, 
     QuantityPipe,
-    CheckoutComponent
+    CheckoutComponent,
+    AllordersComponent
   ],
   imports: [
     BrowserModule,

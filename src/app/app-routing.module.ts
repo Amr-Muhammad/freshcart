@@ -13,6 +13,7 @@ import { authGuardGuard } from './guards/auth-guard.guard';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AllordersComponent } from './allorders/allorders.component';
 
 const routes: Routes = [
   { path: '', redirectTo: "home", pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
+  { path: 'allorders', component: AllordersComponent },
   { path: '**', component: NotfoundComponent },
 ];
 

@@ -37,7 +37,8 @@ export class ProductDetailsComponent implements OnInit {
     // this.id = this._ActivatedRoute.params
     // console.log(this.id._value); 
 
-
+    //*Alterante way of getting parameters bdl el subscribe */
+    // this._ActivatedRoute.snapshot.paramMap.get('id')
 
   }
 

@@ -62,7 +62,7 @@ export class CartService {
       shippingAddress
     }
 
-    return this._httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${id}?url=http://localhost:4200`, body, this.options)
+    return this._httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${id}?url=https://amr-muhammad.github.io/freshcart/`, body, this.options)
   }
 
 

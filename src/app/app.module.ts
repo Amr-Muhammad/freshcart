@@ -25,6 +25,7 @@ import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AllordersComponent } from './allorders/allorders.component';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { AllordersComponent } from './allorders/allorders.component';
     CarouselModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [{provide:LocationStrategy,useClass:PathLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

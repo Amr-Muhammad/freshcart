@@ -25,7 +25,6 @@ import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AllordersComponent } from './allorders/allorders.component';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     ProductDetailsComponent,
     ForgetPasswordComponent,
     FooterComponent,
-    SearchPipePipe, 
+    SearchPipePipe,
     QuantityPipe,
     CheckoutComponent,
     AllordersComponent
@@ -54,11 +53,11 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule, 
+    RouterModule,
     CarouselModule,
     FormsModule,
   ],
-  providers: [{provide:LocationStrategy,useClass:PathLocationStrategy}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

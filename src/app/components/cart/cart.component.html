@@ -21,7 +21,7 @@
             <div class="d-flex gap-4">
 
                 <div>
-                    <img [src]="item.product.imageCover" class="fixedHeight" [alt]="item.product.title">
+                    <img [src]="item.product.imageCover" class="fixedHeight clickable" [alt]="item.product.title" [routerLink]="['/productDetails',item.product._id]">
                 </div>
 
                 <div class="flex-grow-1">

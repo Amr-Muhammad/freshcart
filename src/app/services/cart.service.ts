@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -8,9 +8,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CartService {
 
+
   baseUrl: string = 'https://ecommerce.routemisr.com'
   header: any = localStorage.getItem('token')
   noOfCartItems: BehaviorSubject<number> = new BehaviorSubject(0)
+  isAddedToCart: BehaviorSubject<boolean> = new BehaviorSubject(false)
 
   options: any = {
     headers: {
@@ -20,7 +22,6 @@ export class CartService {
 
   constructor(private _httpClient: HttpClient) {
   }
-
 
   addToCart(id: any): Observable<any> {
     let body = {

@@ -16,3 +16,26 @@ nav {
     font-size: 1.0625rem;
     padding: .75rem 0rem;
 }
+
+.cartMessage {
+    text-align: center;
+    width: 250px;
+    left: 0;
+    top: 100%;
+    transform: translate(-50%, 0);
+    background-color: var(--greenColor);
+    color: white;
+    padding: 10px;
+    opacity: 0;
+    animation: animateCartMessage 1s forwards;
+}
+
+@keyframes animateCartMessage {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

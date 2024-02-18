@@ -15,7 +15,7 @@
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="/home">Home</a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="/cart">Cart</a>
                 </li>
                 <li class="nav-item">
@@ -42,10 +42,14 @@
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="/login">Login</a>
                 </li>
 
-                <li *ngIf="isLogged" class="nav-item d-flex align-items-center me-4 fs-4 clickable" routerLink="/cart">
+                <li *ngIf="isLogged" class="nav-item d-flex align-items-center me-4 fs-4 clickable position-relative"
+                    routerLink="/cart">
                     <i class="position-relative fa-solid fa-cart-shopping text-success">
                         <span *ngIf="noOfCartItems" class="noOfCartCounter">{{noOfCartItems}}</span>
                     </i>
+                    <div *ngIf="isAddedToCart" class="cartMessage position-absolute border border-2 rounded-2">
+                        <p class="m-0 fs-6">Your product has been added to your cart Successfully!</p>
+                    </div>
                 </li>
 
                 <li *ngIf="isLogged" class="nav-item d-flex align-items-center justify-content-center">

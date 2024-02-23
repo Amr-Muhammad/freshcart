@@ -40,10 +40,13 @@ export class LoginComponent implements OnInit {
     this.isLoading = true
 
     this._authser.login(loginform.value).subscribe({
+
       next: (response) => {
+
         localStorage.setItem('token', response.token)
         this._authser.decodeToken()
         this._cartService.options.headers.token = response.token;
+
         this._cartService.getAllCart().subscribe({
           next: () => {
             this._cartService.noOfCartItems.next(response.numOfCartItems)
@@ -55,9 +58,11 @@ export class LoginComponent implements OnInit {
       }
       ,
       error: (err) => {
-        this.errorMessage = err.error.message
         this.isLoading = false
-        return EMPTY;
+        console.log(err);
+
+        this.errorMessage = err.message
+        // return EMPTY;
       }
       ,
       complete: () => {
@@ -69,3 +74,38 @@ export class LoginComponent implements OnInit {
   }
 
 }
+
+
+
+// {
+
+//   next: (response) => {
+//     console.log(response);
+
+//     localStorage.setItem('token', response.token)
+//     this._authser.decodeToken()
+//     this._cartService.options.headers.token = response.token;
+
+//     // this._cartService.getAllCart().subscribe({
+//     //   next: () => {
+//     //     this._cartService.noOfCartItems.next(response.numOfCartItems)
+//     //   },
+//     //   error: (err) => {
+//     //     console.log(err);
+//     //   }
+//     // })
+//   }
+//   ,
+//   error: (err) => {
+//     this.isLoading = false
+//     console.log(err);
+
+//     this.errorMessage = err.message
+//     // return EMPTY;
+//   }
+//   ,
+//   complete: () => {
+//     this._router.navigate(['./home'])
+
+//   },
+// }

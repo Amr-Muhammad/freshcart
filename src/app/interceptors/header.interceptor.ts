@@ -11,17 +11,22 @@ import { Observable } from 'rxjs';
 export class headerInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    let token = localStorage.getItem('token')
-    let modifiedReq: any
-    if (token) {
-
-
-      modifiedReq = req.clone({
-        headers: req.headers.set('token', token)
-      });
+    if (req.url.includes('auth')) {
+      return next.handle(req)
     }
+    else {
+      let token = localStorage.getItem('token')
+      let modifiedReq: any
+      if (token) {
 
-    return next.handle(modifiedReq);
+
+        modifiedReq = req.clone({
+          headers: req.headers.set('token', token)
+        });
+      }
+
+      return next.handle(modifiedReq);
+    }
   }
 
 }

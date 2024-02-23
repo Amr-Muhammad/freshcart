@@ -85,7 +85,7 @@
 .fixedHeight {
     height: 12.5rem;
     width: 9.375rem;
-} 
+}
 
 /* .container{
     max-width: 1500px !important;
@@ -101,4 +101,48 @@
 .wishlist:hover {
     background-color: rgba(128, 128, 128, 0.514);
     transition: all 0.5s;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    background: var(--greenColor);
+    display: grid;
+    animation: l4-0 1s infinite linear;
+  }
+  .loader::before,
+  .loader::after {
+    content: "";
+    grid-area: 1/1;
+    background:var(--btns);
+    animation: inherit;
+    animation-name: l4-1;
+  }
+  .loader::after {
+    background: var(--mainColor);
+    --s: 60deg;
+  }
+  @keyframes l4-0 {
+    0%,20% {transform: rotate(0)}
+    100%   {transform: rotate(90deg)}
+  }
+  @keyframes l4-1 {
+    50% {transform: rotate(var(--s,30deg))}
+    100% {transform: rotate(0)}
+  }
+  
+
+
+.containSpinner{
+    background-color: rgba(128, 128, 128, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

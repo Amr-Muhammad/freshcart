@@ -36,9 +36,7 @@ export class RegisterComponent implements OnInit {
 
     this.isLoading = true
     this._auth.register(registerForm.value).subscribe({
-      next: (response) => {
-        console.log(response);
-
+      next: () => {
         this.errorMessage = ''
         this.isLoading = false
         this._router.navigate(['./login'])

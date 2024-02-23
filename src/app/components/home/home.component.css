@@ -94,10 +94,4 @@
 .wishlist:hover i {
     color: #9B4444 !important;
     -webkit-text-stroke: 2px #9B4444;
-
-}
-
-
-@media screen and (max-width:991px) {
-    
 }

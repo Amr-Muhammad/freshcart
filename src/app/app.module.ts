@@ -14,7 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductDetailsComponent } from './components/product-details/product-details.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule } from '@angular/router';
@@ -25,7 +25,8 @@ import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AllordersComponent } from './allorders/allorders.component';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+// import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { headerInterceptor } from './interceptors/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,11 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     CarouselModule,
     FormsModule,
   ],
-  providers: [{provide:LocationStrategy,useClass:PathLocationStrategy}],
+  providers:[{
+    provide:HTTP_INTERCEPTORS,
+    useClass:headerInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

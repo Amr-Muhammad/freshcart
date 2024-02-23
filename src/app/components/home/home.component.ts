@@ -31,11 +31,11 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    this._homeProducts.getCategories().subscribe({
-      next: (response) => {
-        this.categories = response.data
-      }
-    })
+    // this._homeProducts.getCategories().subscribe({
+    //   next: (response) => {
+    //     this.categories = response.data
+    //   }
+    // })
 
   }
 
@@ -95,20 +95,24 @@ export class HomeComponent implements OnInit {
 
       next: (response: addCart) => {
         this._cartService.noOfCartItems.next(response.numOfCartItems);
+        this._cartService.isAddedToCart.next(true)
       }
       ,
       error: (error) => {
         console.log(error);
       }
       ,
-      complete() {
-        (e.target as HTMLElement).innerText = 'Add to Cart';
-        (document.getElementById(id) as HTMLElement).classList.add('translate')
+      // complete() {
+      //   (e.target as HTMLElement).innerText = 'Add to Cart';
+      //   (document.getElementById(id) as HTMLElement).classList.add('translate')
 
-        setTimeout(() => {
-          (document.getElementById(id) as HTMLElement).classList.remove('translate')
-        }, 1500);
-      },
+      //   setTimeout(() => {
+      //     (document.getElementById(id) as HTMLElement).classList.remove('translate')
+      //   }, 1500);
+
+      // },
+
+
 
     })
   }

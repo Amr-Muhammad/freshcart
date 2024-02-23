@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { addCart } from 'src/app/interfaces/addCart';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -15,7 +15,12 @@ export class NavbarComponent implements OnInit {
   noOfCartItems: number = 0
   isAddedToCart: boolean = false
 
-  constructor(private _authser: AuthenticationService, private _router: Router, private _cartService: CartService) {
+  mediaQueryValue = window.matchMedia('(max-width:991px)')
+
+  cartSmall: boolean = false
+  cartBig: boolean = false
+
+  constructor(private _authser: AuthenticationService, private _router: Router, private _cartService: CartService, private _Renderer2: Renderer2) {
 
   }
 
@@ -59,11 +64,41 @@ export class NavbarComponent implements OnInit {
       }, 3000);
     })
 
+    let handleMediaQueryChange = () => {
+      if (this.mediaQueryValue.matches) {
+        this.cartBig = false
+        this.cartSmall = true
+      }
+      else {
+        this.cartBig = true
+        this.cartSmall = false
+      }
+    }
+    
+    handleMediaQueryChange()
+    this.mediaQueryValue.addEventListener('change', handleMediaQueryChange)
+
   }
+
+
 
   logout() {
     this._authser.logout()
   }
+
+
+  // handleMediaQueryChange() {
+  //   console.log(this.mediaQueryValue);
+
+  //   if (this.mediaQueryValue.matches) {
+  //     this.cartBig = false
+  //     this.cartSmall = true
+  //   }
+  //   else {
+  //     this.cartBig = true
+  //     this.cartSmall = false
+  //   }
+  // }
 }
 
 

@@ -27,26 +27,26 @@ export class CartService {
     let body = {
       productId: id
     }
-    return this._httpClient.post(`${this.baseUrl}/api/v1/cart`, body, this.options)
+    return this._httpClient.post(`${this.baseUrl}/api/v1/cart`, body)
   }
 
   getAllCart(): Observable<any> {
-    return this._httpClient.get(`${this.baseUrl}/api/v1/cart`, this.options)
+    return this._httpClient.get(`${this.baseUrl}/api/v1/cart`)
   }
 
   updateCartNumber(id: any, count: any): Observable<any> {
     let body = {
       count: count
     }
-    return this._httpClient.put(`${this.baseUrl}/api/v1/cart/${id}`, body, this.options)
+    return this._httpClient.put(`${this.baseUrl}/api/v1/cart/${id}`, body)
   }
 
   deleteCartItem(id: string): Observable<any> {
-    return this._httpClient.delete(`${this.baseUrl}/api/v1/cart/${id}`, this.options)
+    return this._httpClient.delete(`${this.baseUrl}/api/v1/cart/${id}`)
   }
 
   clearCart(): Observable<any> {
-    return this._httpClient.delete(`${this.baseUrl}/api/v1/cart`, this.options)
+    return this._httpClient.delete(`${this.baseUrl}/api/v1/cart`)
   }
 
   checkoutCash(id: string, cartForm: FormGroup): Observable<any> {
@@ -55,7 +55,7 @@ export class CartService {
         cartForm
       }
     }
-    return this._httpClient.post(`${this.baseUrl}/api/v1/orders/${id}`, body, this.options)
+    return this._httpClient.post(`${this.baseUrl}/api/v1/orders/${id}`, body)
   }
 
   checkoutOnline(id: string, shippingAddress: FormGroup): Observable<any> {

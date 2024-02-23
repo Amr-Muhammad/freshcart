@@ -3,10 +3,22 @@
 
         <img routerLink="home" src="assets/images/freshcart-logo.svg" alt="" class="clickable">
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="d-flex">
+            <li *ngIf="isLogged && cartSmall"
+                class="nav-item d-flex align-items-center me-4 fs-4 clickable position-relative" routerLink="/cart">
+                <i class="position-relative fa-solid fa-cart-shopping text-success">
+                    <span *ngIf="noOfCartItems" class="noOfCartCounter">{{noOfCartItems}}</span>
+                </i>
+                <div *ngIf="isAddedToCart" class="cartMessage position-absolute border border-2 rounded-2">
+                    <p class="m-0 fs-6">Your product has been added to your cart Successfully!</p>
+                </div>
+            </li>
+            <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -42,8 +54,8 @@
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="/login">Login</a>
                 </li>
 
-                <li *ngIf="isLogged" class="nav-item d-flex align-items-center me-4 fs-4 clickable position-relative"
-                    routerLink="/cart">
+                <li *ngIf="isLogged &&cartBig"
+                    class="nav-item d-flex align-items-center me-4 fs-4 clickable position-relative" routerLink="/cart">
                     <i class="position-relative fa-solid fa-cart-shopping text-success">
                         <span *ngIf="noOfCartItems" class="noOfCartCounter">{{noOfCartItems}}</span>
                     </i>
@@ -69,5 +81,6 @@
             </ul>
 
         </div>
+
     </div>
 </nav>

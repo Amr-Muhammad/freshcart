@@ -25,7 +25,6 @@ import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AllordersComponent } from './allorders/allorders.component';
-// import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { headerInterceptor } from './interceptors/header.interceptor';
 
 @NgModule({
@@ -57,7 +56,7 @@ import { headerInterceptor } from './interceptors/header.interceptor';
     BrowserAnimationsModule,
     RouterModule,
     CarouselModule,
-    FormsModule,
+    FormsModule
   ],
   providers:[{
     provide:HTTP_INTERCEPTORS,

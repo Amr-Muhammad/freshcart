@@ -13,6 +13,7 @@ export class CartService {
   header: any = localStorage.getItem('token')
   noOfCartItems: BehaviorSubject<number> = new BehaviorSubject(0)
   isAddedToCart: BehaviorSubject<boolean> = new BehaviorSubject(false)
+  wishlistNotificationMessage: BehaviorSubject<boolean> = new BehaviorSubject(false)
 
   options: any = {
     headers: {

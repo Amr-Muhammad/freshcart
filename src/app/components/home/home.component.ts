@@ -5,6 +5,7 @@ import { HomeProductsService } from 'src/app/services/home-products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CartService } from 'src/app/services/cart.service';
 import { addCart } from 'src/app/interfaces/addCart';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
   categories: Category[] = []
   searchValue: string = ''
 
-  constructor(private _homeProducts: HomeProductsService, private _router: Router, private _cartService: CartService) {
+  constructor(private _homeProducts: HomeProductsService, private _router: Router, private _cartService: CartService, private _WishlistService: WishlistService) {
 
   }
 
@@ -104,16 +105,27 @@ export class HomeComponent implements OnInit {
       ,
       complete() {
         (e.target as HTMLElement).innerText = 'Add to Cart';
-      //   (document.getElementById(id) as HTMLElement).classList.add('translate')
+        //   (document.getElementById(id) as HTMLElement).classList.add('translate')
 
-      //   setTimeout(() => {
-      //     (document.getElementById(id) as HTMLElement).classList.remove('translate')
-      //   }, 1500);
+        //   setTimeout(() => {
+        //     (document.getElementById(id) as HTMLElement).classList.remove('translate')
+        //   }, 1500);
 
       },
 
 
 
+    })
+  }
+
+  addToWishlist(productId: string) {
+    this._WishlistService.addToWishlist(productId).subscribe({
+      next: () => {
+        this._cartService.wishlistNotificationMessage.next(true)
+      },
+      error: (err) => {
+        console.log(err);
+      }
     })
   }
 

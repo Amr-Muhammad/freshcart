@@ -47,8 +47,7 @@ export class NavbarComponent implements OnInit {
       }
       ,
       error(err) {
-        // console.log();
-
+        console.log(err);
       },
     })
 
@@ -74,7 +73,7 @@ export class NavbarComponent implements OnInit {
         this.cartSmall = false
       }
     }
-    
+
     handleMediaQueryChange()
     this.mediaQueryValue.addEventListener('change', handleMediaQueryChange)
 

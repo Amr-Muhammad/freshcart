@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('token', response.token)
         this._authser.decodeToken()
-        this._cartService.options.headers.token = response.token;
+        // this._cartService.options.headers.token = response.token;
 
         this._cartService.getAllCart().subscribe({
           next: () => {

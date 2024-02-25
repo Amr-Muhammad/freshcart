@@ -5,6 +5,7 @@ import { HomeProductsService } from 'src/app/services/home-products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CartService } from 'src/app/services/cart.service';
 import { addCart } from 'src/app/interfaces/addCart';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -18,9 +19,7 @@ export class HomeComponent implements OnInit {
   categories: Category[] = []
   searchValue: string = ''
 
-  constructor(private _homeProducts: HomeProductsService, private _router: Router, private _cartService: CartService) {
-
-  }
+  constructor(private _homeProducts: HomeProductsService, private _router: Router, private _cartService: CartService, private _WishlistService: WishlistService) { }
 
   ngOnInit(): void {
 
@@ -38,6 +37,45 @@ export class HomeComponent implements OnInit {
     })
 
   }
+
+  addToCart(id: string, e: Event) {
+    (e.target as HTMLElement).innerText = 'Adding...'
+
+    this._cartService.addToCart(id).subscribe({
+
+      next: (response: addCart) => {
+        this._cartService.noOfCartItems.next(response.numOfCartItems);
+        this._cartService.cartNotMessage.next(true)
+      }
+      ,
+      error: (error) => {
+        console.log(error);
+      }
+      ,
+      complete() {
+        (e.target as HTMLElement).innerText = 'Add to Cart';
+        //   (document.getElementById(id) as HTMLElement).classList.add('translate')
+
+        //   setTimeout(() => {
+        //     (document.getElementById(id) as HTMLElement).classList.remove('translate')
+        //   }, 1500);
+
+      },
+    })
+
+  }
+
+  addToWishlist(productId: string) {
+    this._WishlistService.addToWishlist(productId).subscribe({
+      next: () => {
+        this._cartService.wishlistNotificationMessage.next(true)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
 
   customOptions: OwlOptions = {
     loop: true,
@@ -85,36 +123,6 @@ export class HomeComponent implements OnInit {
         items: 7
       }
     },
-  }
-
-  addToCart(id: string, e: Event) {
-
-    (e.target as HTMLElement).innerText = 'Adding...'
-
-    this._cartService.addToCart(id).subscribe({
-
-      next: (response: addCart) => {
-        this._cartService.noOfCartItems.next(response.numOfCartItems);
-        this._cartService.isAddedToCart.next(true)
-      }
-      ,
-      error: (error) => {
-        console.log(error);
-      }
-      ,
-      complete() {
-        (e.target as HTMLElement).innerText = 'Add to Cart';
-      //   (document.getElementById(id) as HTMLElement).classList.add('translate')
-
-      //   setTimeout(() => {
-      //     (document.getElementById(id) as HTMLElement).classList.remove('translate')
-      //   }, 1500);
-
-      },
-
-
-
-    })
   }
 
 }

@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, ViewChild } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
 
+export class CartService {
 
   baseUrl: string = 'https://ecommerce.routemisr.com'
   header: any = localStorage.getItem('token')
   noOfCartItems: BehaviorSubject<number> = new BehaviorSubject(0)
-  isAddedToCart: BehaviorSubject<boolean> = new BehaviorSubject(false)
+  cartNotMessage: BehaviorSubject<boolean> = new BehaviorSubject(false)
+  wishlistNotificationMessage: BehaviorSubject<boolean> = new BehaviorSubject(false)
 
   // options: any = {
   //   headers: {
@@ -20,8 +21,7 @@ export class CartService {
   //   }
   // }
 
-  constructor(private _httpClient: HttpClient) {
-  }
+  constructor(private _httpClient: HttpClient) {}
 
   addToCart(id: any): Observable<any> {
     let body = {
@@ -65,6 +65,5 @@ export class CartService {
 
     return this._httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${id}?url=https://amr-muhammad.github.io/freshcart/`, body)
   }
-
 
 }

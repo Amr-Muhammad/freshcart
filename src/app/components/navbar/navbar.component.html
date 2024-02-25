@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-gradient fixed-top">
     <div class="container">
 
-        <img routerLink="home" src="assets/images/freshcart-logo.svg" alt="" class="clickable">
+        <img routerLink="home" src="./assets/images/freshcart-logo.svg" alt="" class="clickable">
 
         <div class="d-flex">
             <li *ngIf="isLogged && cartSmall"
@@ -9,7 +9,7 @@
                 <i class="position-relative fa-solid fa-cart-shopping text-success">
                     <span *ngIf="noOfCartItems" class="noOfCartCounter">{{noOfCartItems}}</span>
                 </i>
-                <div *ngIf="isAddedToCart" class="cartMessage position-absolute border border-2 rounded-2">
+                <div *ngIf="cartNotMessage" class="cartMessage position-absolute border border-2 rounded-2">
                     <p class="m-0 fs-6">Your product has been added to your cart Successfully!</p>
                 </div>
             </li>
@@ -30,8 +30,11 @@
                 <li class="nav-item ">
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="/cart">Cart</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item position-relative">
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="/wishlist">Wishlist</a>
+                    <div *ngIf="wishlistNotMessage" class="wishlistMessage position-absolute border border-2 rounded-2">
+                        <p class="m-0 fs-6">Your product has been added to your wishlist Successfully!</p>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="/products">Products</a>
@@ -54,12 +57,12 @@
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="/login">Login</a>
                 </li>
 
-                <li *ngIf="isLogged &&cartBig"
+                <li *ngIf="isLogged &&!cartSmall"
                     class="nav-item d-flex align-items-center me-4 fs-4 clickable position-relative" routerLink="/cart">
                     <i class="position-relative fa-solid fa-cart-shopping text-success">
                         <span *ngIf="noOfCartItems" class="noOfCartCounter">{{noOfCartItems}}</span>
                     </i>
-                    <div *ngIf="isAddedToCart" class="cartMessage position-absolute border border-2 rounded-2">
+                    <div *ngIf="cartNotMessage" class="cartMessage position-absolute border border-2 rounded-2">
                         <p class="m-0 fs-6">Your product has been added to your cart Successfully!</p>
                     </div>
                 </li>

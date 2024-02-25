@@ -1,1 +1,40 @@
-<p>wishlist works!</p>
+<div *ngIf="wishlistData">
+
+    <div class="fw-bold">
+        <h3 class="d-flex align-items-center">My Wishlist <span class="fssm text-muted ms-2">({{wishlistData.count}}
+                items)</span></h3>
+    </div>
+
+    <hr>
+
+    <div class="row" *ngFor="let item of wishlistData.data">
+
+        <div class="col-md-2 text-center">
+            <img class="fixedHeight" [src]="item.imageCover" alt="">
+        </div>
+
+        <div class="col-md-10">
+            <span class="mainColor fssm fw-bold d-block">In Stock</span>
+            <p class="my-1">{{item.description.split('',250).join('').trim()}}{{item.description.length>250?'...':''}}
+            </p>
+            <p class="m-0 d-flex align-items-center fssm">
+                <span class="bg-success px-2 text-white me-2">{{item.ratingsAverage}} <i
+                        class="fa-solid fa-star text-warning"></i></span>
+                <span class="text-muted">({{item.ratingsQuantity}})</span>
+            </p>
+            <p class="my-2">{{item.price|currency:'EGP'}}</p>
+
+            <div>
+                <button class="addToCartBtn d-block ms-auto px-5" (click)="addToCart(item._id,$event)">Add To
+                    Cart</button>
+            </div>
+
+
+        </div>
+
+        <hr class="my-3">
+
+    </div>
+
+
+</div>

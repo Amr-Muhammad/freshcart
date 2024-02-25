@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EMPTY } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -48,8 +47,8 @@ export class LoginComponent implements OnInit {
         // this._cartService.options.headers.token = response.token;
 
         this._cartService.getAllCart().subscribe({
-          next: () => {
-            this._cartService.noOfCartItems.next(response.numOfCartItems)
+          next: (cartResponse) => {
+            this._cartService.noOfCartItems.next(cartResponse.numOfCartItems)
           },
           error: (err) => {
             console.log(err);

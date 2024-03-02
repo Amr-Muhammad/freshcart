@@ -22,16 +22,21 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
 
     // if (this._cartService.noOfCartItems.getValue() != 0) {
+
     this._cartService.getAllCart().subscribe({
 
       next: (response) => {
         this.cartData = response
+
       }
       ,
       error: (err) => {
         console.log(err);
       }
     })
+
+
+
   }
   // }
 

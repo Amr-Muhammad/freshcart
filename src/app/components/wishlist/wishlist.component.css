@@ -12,3 +12,11 @@
     background-color: var(--greenColor);
     color: white;
 }
+
+.trashCion{
+    transition: all 0.2s;
+}
+
+.trashCion:hover{
+transform: scale(1.2);
+}

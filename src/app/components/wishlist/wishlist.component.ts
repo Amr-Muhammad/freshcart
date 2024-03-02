@@ -19,16 +19,42 @@ export class WishlistComponent implements OnInit {
     this._WishlistService.getAllWishlist().subscribe({
       next: (response) => {
         this.wishlistData = response
-      },
-
+      }
+      ,
       error: (err) => {
         console.log(err);
       }
     })
   }
 
-  deleteWihslistItem() {
+  deleteWihslistItem(id: string) {
+    this._WishlistService.deleteWishlistItem(id).subscribe({
+      next: (response) => {
+        console.log(response);
+        if (this.wishlistData?.data) {
+          this.wishlistData.data = this.wishlistData?.data.filter(obj => obj._id != id)
+        }
 
+        //!change this shit with array method
+        // this._WishlistService.getAllWishlist().subscribe({
+        //   next: (response) => {
+        //     console.log(response);
+
+        //     this.wishlistData = response
+
+        //   }
+        //   ,
+        //   error: (err) => {
+        //     console.log(err);
+
+        //   }
+        // })
+      }
+      ,
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   addToCart(id: string, e: any) {
@@ -36,16 +62,14 @@ export class WishlistComponent implements OnInit {
 
     this._cartService.addToCart(id).subscribe({
       next: (response) => {
-        console.log(response);
         this._cartService.cartNotMessage.next(true)
         this._cartService.noOfCartItems.next(response.numOfCartItems)
       },
-      error: () => {
-
+      error: (err) => {
+        console.log(err);
       },
       complete: () =>
         e.target.innerText = 'Add To Cart'
-
     })
   }
 

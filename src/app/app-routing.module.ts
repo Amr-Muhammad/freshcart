@@ -16,7 +16,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { AllordersComponent } from './allorders/allorders.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: "home", pathMatch: 'full' },
+  { path: '', redirectTo: "/home", pathMatch: 'full' },
   { path: 'home', canActivate: [authGuardGuard], component: HomeComponent },
   { path: 'cart', canActivate: [authGuardGuard], component: CartComponent },
   { path: 'wishlist', canActivate: [authGuardGuard], component: WishlistComponent },

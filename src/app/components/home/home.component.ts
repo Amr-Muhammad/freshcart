@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Category, productsInterface } from 'src/app/interfaces/products';
 import { HomeProductsService } from 'src/app/services/home-products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -19,7 +18,7 @@ export class HomeComponent implements OnInit {
   categories: Category[] = []
   searchValue: string = ''
 
-  constructor(private _homeProducts: HomeProductsService, private _router: Router, private _cartService: CartService, private _WishlistService: WishlistService) { }
+  constructor(private _homeProducts: HomeProductsService, private _cartService: CartService, private _WishlistService: WishlistService) { }
 
   ngOnInit(): void {
 
@@ -30,11 +29,13 @@ export class HomeComponent implements OnInit {
       }
     })
 
+
     this._homeProducts.getCategories().subscribe({
       next: (response) => {
         this.categories = response.data
       }
     })
+
 
   }
 

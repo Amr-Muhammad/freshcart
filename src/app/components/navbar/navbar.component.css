@@ -15,6 +15,11 @@ nav {
     background-color: var(--mainColor);
     font-size: 1.0625rem;
     padding: .75rem 0rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 19;
 }
 
 .cartMessage {
@@ -23,8 +28,9 @@ nav {
     left: 0;
     top: 100%;
     transform: translate(-50%, 0);
-    background-color: var(--greenColor);
-    color: white;
+    background-color:var(--mainColor);
+    color: black;
+    font-style: italic;
     padding: 10px;
     opacity: 0;
     animation: animateCartMessage 1s forwards;
@@ -45,8 +51,9 @@ nav {
     left: 50%;
     top: 100%;
     transform: translate(-50%, 0);
-    background-color: var(--greenColor);
-    color: white;
+    background-color:var(--mainColor);
+    color: black;
+    font-style: italic;
     padding: 10px;
     opacity: 0;
     animation: animateWishlistMessage 1s forwards;

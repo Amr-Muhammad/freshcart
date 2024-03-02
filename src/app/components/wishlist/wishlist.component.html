@@ -1,4 +1,4 @@
-<div *ngIf="wishlistData">
+<div *ngIf="wishlistData && wishlistData.data[0]">
 
     <div class="fw-bold">
         <h3 class="d-flex align-items-center">My Wishlist <span class="fssm text-muted ms-2">({{wishlistData.count}}
@@ -10,11 +10,16 @@
     <div class="row" *ngFor="let item of wishlistData.data">
 
         <div class="col-md-2 text-center">
-            <img class="fixedHeight" [src]="item.imageCover" alt="">
+            <img class="fixedHeight clickable" [src]="item.imageCover" [alt]="item.title"
+                [routerLink]="['/productDetails',item._id]">
         </div>
 
         <div class="col-md-10">
-            <span class="mainColor fssm fw-bold d-block">In Stock</span>
+            <div class="d-flex justify-content-between">
+                <span class="mainColor fssm fw-bold d-block">In Stock</span>
+                <i (click)="deleteWihslistItem(item._id)"
+                    class="trashCion fa-solid fa-trash text-danger me-3 clickable"></i>
+            </div>
             <p class="my-1">{{item.description.split('',250).join('').trim()}}{{item.description.length>250?'...':''}}
             </p>
             <p class="m-0 d-flex align-items-center fssm">
@@ -37,4 +42,11 @@
     </div>
 
 
+</div>
+
+<div class=" d-flex justify-content-center align-items-center flex-column"
+    *ngIf="wishlistData && wishlistData.data[0]?false:true">
+    <img class="w-50" src="assets/images/images/empty-wishlist.png" alt="">
+    <p class="fw-bold fs-3 mb-2">Your Wishlist is Empty!</p>
+    <p class="text-muted fs-5">You have no items in your wishlist</p>
 </div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { addCart } from 'src/app/interfaces/addCart';
+import { allCart } from 'src/app/interfaces/allCart';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
+import { LoadingScreenService } from 'src/app/services/loading-screen.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +19,7 @@ export class NavbarComponent implements OnInit {
   mediaQueryList = window.matchMedia('(max-width:991px)')
   cartSmall: boolean = false
 
-  constructor(private _authser: AuthenticationService, private _cartService: CartService) { }
+  constructor(private _authser: AuthenticationService, private _cartService: CartService, public _loading: LoadingScreenService) { }
 
   ngOnInit(): void {
 
@@ -35,15 +36,16 @@ export class NavbarComponent implements OnInit {
 
     })
 
+
     if (localStorage.getItem('token')) {
       this._cartService.getAllCart().subscribe({
-        next: (response: addCart) => {
-          this.noOfCartItems = response.numOfCartItems
+        next: (response: allCart) => {
+          this._cartService.noOfCartItems.next(response.numOfCartItems)
         }
         ,
         error: (err) => {
           console.log(err);
-        },
+        }
       })
     }
 

@@ -62,7 +62,6 @@ export class CartComponent implements OnInit {
     this._cartService.deleteCartItem(id).subscribe({
       next: (response: allCart) => {
         this.cartData = response;
-        console.log(this.cartData);
 
         (e.target as HTMLElement).innerText = ' Delete Item';
         this._cartService.noOfCartItems.next(response.numOfCartItems)

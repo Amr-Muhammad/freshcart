@@ -30,7 +30,6 @@ export class WishlistComponent implements OnInit {
   deleteWihslistItem(id: string) {
     this._WishlistService.deleteWishlistItem(id).subscribe({
       next: (response) => {
-        console.log(response);
         if (this.wishlistData?.data) {
           this.wishlistData.data = this.wishlistData?.data.filter(obj => obj._id != id)
         }

@@ -77,6 +77,9 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  focusInput(e: any) {
+    (document.querySelector('.searchInput') as HTMLInputElement).focus()
+  }
 
   customOptions: OwlOptions = {
     loop: true,

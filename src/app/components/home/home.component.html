@@ -62,16 +62,16 @@
     </owl-carousel-o>
 </div>
 
-<div class="title2 d-flex justify-content-between align-items-center my-4">
+<div class="row justify-content-between align-items-center my-4">
 
-    <h2 class="fw-bold">Popular Products</h2>
+    <h2 class="fw-bold col-md-8">Popular Products</h2>
 
-    <div class="align-items-center position-relative">
+    <div class="align-items-center position-relative col-md-4">
 
         <input class="searchInput form-control pe-5" value="amr" [(ngModel)]="searchValue" type="text"
             placeholder="Search for products">
 
-        <i class="position-absolute end-0 top-50 translate-middle-y  me-2 fa-solid fa-magnifying-glass clickable"></i>
+        <i (click)="focusInput($event)" class="position-absolute end-0 top-50 translate-middle-y me-4 fa-solid fa-magnifying-glass clickable"></i>
     </div>
 
 </div>

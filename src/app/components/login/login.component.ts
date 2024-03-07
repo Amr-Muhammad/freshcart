@@ -44,8 +44,6 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('token', authResponse.token)
         this._authser.decodeToken()
-        // this._cartService.options.headers.token = response.token;
-
         this._cartService.getAllCart().subscribe({
           next: (cartResponse) => {
             this._cartService.noOfCartItems.next(cartResponse.numOfCartItems)
@@ -59,14 +57,11 @@ export class LoginComponent implements OnInit {
       error: (err) => {
         this.isLoading = false
         console.log(err);
-
-        this.errorMessage = err.message
-        // return EMPTY;
+        this.errorMessage = err.error.message
       }
       ,
       complete: () => {
         this._router.navigate(['./home'])
-
       },
     })
 

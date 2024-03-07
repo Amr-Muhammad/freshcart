@@ -17,7 +17,11 @@ export class headerInterceptor implements HttpInterceptor {
     this._loading.loadingScreen.next(true)
 
     if (req.url.includes('auth')) {
-      return next.handle(req)
+      return next.handle(req).pipe(
+        finalize(() => {
+          this._loading.loadingScreen.next(false)
+        })
+      )
     }
 
     else {
@@ -36,9 +40,14 @@ export class headerInterceptor implements HttpInterceptor {
         )
       }
       else {
-        return next.handle(req)
+        return next.handle(req).pipe(
+          finalize(() => {
+            this._loading.loadingScreen.next(false)
+          })
+        )
       }
 
     }
+
   }
 }

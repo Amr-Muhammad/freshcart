@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { allCart } from '../interfaces/allCart';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +14,6 @@ export class CartService {
   noOfCartItems: BehaviorSubject<number> = new BehaviorSubject(0)
   cartNotMessage: BehaviorSubject<boolean> = new BehaviorSubject(false)
   wishlistNotificationMessage: BehaviorSubject<boolean> = new BehaviorSubject(false)
-
-
-  // options: any = {
-  //   headers: {
-  //     token: localStorage.getItem('token')
-  //   }
-  // }
 
   constructor(private _httpClient: HttpClient) { }
 

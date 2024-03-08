@@ -17,10 +17,7 @@ export class LoginComponent implements OnInit {
   search: string = ''
 
 
-  constructor(private _authser: AuthenticationService, private _router: Router, private _cartService: CartService) {
-    if (localStorage.getItem('token') != null) {
-    }
-  }
+  constructor(private _authser: AuthenticationService, private _router: Router, private _cartService: CartService) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
@@ -68,38 +65,3 @@ export class LoginComponent implements OnInit {
   }
 
 }
-
-
-
-// {
-
-//   next: (response) => {
-//     console.log(response);
-
-//     localStorage.setItem('token', response.token)
-//     this._authser.decodeToken()
-//     this._cartService.options.headers.token = response.token;
-
-//     // this._cartService.getAllCart().subscribe({
-//     //   next: () => {
-//     //     this._cartService.noOfCartItems.next(response.numOfCartItems)
-//     //   },
-//     //   error: (err) => {
-//     //     console.log(err);
-//     //   }
-//     // })
-//   }
-//   ,
-//   error: (err) => {
-//     this.isLoading = false
-//     console.log(err);
-
-//     this.errorMessage = err.message
-//     // return EMPTY;
-//   }
-//   ,
-//   complete: () => {
-//     this._router.navigate(['./home'])
-
-//   },
-// }

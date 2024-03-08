@@ -1,35 +1,51 @@
-<div class="mb-5">
-    <div class="mt-5">
-        <h2 class="mb-2">Login Now</h2>
+<div class="row">
+
+    <div class="leftSide col-md-6 py-5 px-5">
+
+        <div class="px-5">
+            <div class="py-5 px">
+                <div class="mt-5">
+                    <h2 class="mb-2 text-center fw-bold">Login Now</h2>
+                </div>
+
+                <form [formGroup]="loginform" (ngSubmit)="login(loginform)" class="mb-3" autocomplete="off">
+
+                    <div class="mt-4 mb-3">
+                        <label for="email">Email</label>
+                        <input formControlName="email" id="email" class="form-control" type="email">
+                    </div>
+
+                    <div>
+                        <label for="password">Password</label>
+                        <input formControlName="password" id="password" class="form-control" type="password">
+                    </div>
+
+                    <div class="d-flex justify-content-center flex-column align-items-center mt-3">
+                        <p routerLink="/forgetPassword" class="clickable forgetPass fst-italic text-muted text-center">→ Forgot your
+                            password? ←</p>
+
+                        <button [disabled]="loginform.invalid" class="btn btn-primary px-5">
+                            <span *ngIf="!isLoading">Login</span>
+                            <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+                        </button>
+                    </div>
+
+                </form>
+
+                <div *ngIf="errorMessage" class="alert alert-danger text-center">
+                    <p class="m-0">
+                        {{errorMessage}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <form [formGroup]="loginform" (ngSubmit)="login(loginform)" class="mb-3" autocomplete="off">
-
-
-        <div class="mt-4 mb-3">
-            <label for="email">Email :</label>
-            <input formControlName="email" id="email" class="form-control" type="email">
-        </div>
-
-        <div>
-            <label for="password">Password :</label>
-            <input formControlName="password" id="password" class="form-control" type="password">
-        </div>
-
-        <div class="d-flex justify-content-between  mt-3">
-            <p routerLink="/forgetPassword" class="clickable forgetPass fw-bold">Forgot your password?</p>
-
-            <button [disabled]="loginform.invalid" class="btn btn-success">
-                <span *ngIf="!isLoading">Login</span>
-                <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
-            </button>
-        </div>
-
-    </form>
-
-    <div *ngIf="errorMessage" class="alert alert-danger text-center">
-        <p class="m-0">
-            {{errorMessage}}
-        </p>
+    <div
+        class="rightSide px-5 col-md-6 bg-primary rounded-end-4 d-flex justify-content-center align-items-center flex-column gap-2">
+        <h2 class="text-center mb-3">Hello, Don't have an account!</h2>
+        <button class="btn btn-outline-light px-5">Sign Up</button>
     </div>
+
 </div>

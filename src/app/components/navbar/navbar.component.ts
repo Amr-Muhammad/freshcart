@@ -69,7 +69,6 @@ export class NavbarComponent implements OnInit {
       }, 3000);
     })
 
-    //Handle Cart icon in screens
     this.handleMediaQueryChange()
     this.mediaQueryList.addEventListener('change', this.handleMediaQueryChange.bind(this))
 

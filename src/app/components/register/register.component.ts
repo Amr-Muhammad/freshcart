@@ -50,11 +50,7 @@ export class RegisterComponent implements OnInit {
         this.isLoading = false
       }
     })
-
-
-
   }
-
 
   repasswordMatching(form: any) {
 
@@ -68,11 +64,6 @@ export class RegisterComponent implements OnInit {
   }
 
 }
-
-
-
-
-
 
 //! rage3 elgoz2 da
 // passwordMatching(form: any) {

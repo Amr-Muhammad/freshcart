@@ -67,21 +67,6 @@
     transition: all 0.5s;
 }
 
-/* .active2 {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    top: 160%;
-    left: 0%;
-    background-color: var(--greenColor);
-}
-
-.alert {
-    padding: 10px 15px !important;
-    font-size: 14px;
-}*/
-
 .fixedHeight {
     height: 12.5rem;
     width: 9.375rem;

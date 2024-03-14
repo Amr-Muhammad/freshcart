@@ -3,7 +3,131 @@
     text-decoration: underline;
 }
 
-.rightSide{
+.panels-container {
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.signIn-signUp::before {
+    content: '';
     background-color: var(--mainColor);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transition: all 1s ease-in-out;
+}
+
+.component-container.animate .signIn-signUp::before {
+    left: -50%;
+}
+
+.component-container.animate .signUp-Panel {
+    transform: translateX(100%);
+    transition: all 1s;
+    transition-delay: 0.5s;
+}
+
+.register-form {
+    opacity: 0;
+    transition: all 1s;
+}
+
+.component-container.animate .register-form {
+    opacity: 1;
+    transition: all 1s;
+    transition-delay: 0.8s;
+}
+
+.signIn-Panel {
+    transform: translateX(-100%);
+    transition: all 1s;
+    transition-delay: 0.5s;
+}
+
+.component-container.animate .signIn-Panel {
+    transform: translateX(0);
+    transition: all 1s;
+    transition-delay: 0.5s;
+    pointer-events: all;
+}
+
+.signUp-Panel {
+    transform: translateX(0);
+    transition: all 1s;
+    transition-delay: 0.5s;
+    pointer-events: all;
+}
+
+.login-form {
+    opacity: 1;
+    transition: all 1s;
+    transition-delay: 0.8s;
+}
+
+.component-container.animate .login-form {
+    opacity: 0;
+    transition: all 1s;
+}
+
+/* ---------- */
+
+label {
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    pointer-events: none;
+    color: rgb(0, 0, 0);
+    transition: all 0.5s;
+}
+
+input:focus~label {
+    top: -25px;
+}
+
+.position-relative span::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 0%;
+    height: 2px;
+    background-color: var(--mainColor);
+    transition: all 0.5s;
+}
+
+.test {
+    width: 100%;
+    border: none;
+    background-color: rgb(243, 243, 243);
+}
+
+.test:focus {
+    outline: none;
+}
+
+input:focus~span::before {
+    width: 100%;
+    left: 0;
+}
+
+.signIn-signUp .btn {
+    border: 1px solid black;
+    border-radius: 7px;
+    transition: all 0.2s;
+}
+
+.signIn-signUp .btn:hover {
+    background-color: var(--mainColor);
+    border-color: var(--mainColor);
     color: white;
 }

@@ -1,54 +1,167 @@
-<div class="row">
-
-    <div class="leftSide col-md-6 py-5 px-5">
-
-        <div class="px-5">
-            <div class="py-5 px">
-                <div class="mt-5">
-                    <h2 class="mb-2 text-center fw-bold">Login Now</h2>
-                </div>
-
-                <form [formGroup]="loginform" (ngSubmit)="login(loginform)" class="mb-3" autocomplete="off">
-
-                    <div class="mt-4 mb-3">
-                        <label for="email">Email</label>
-                        <input formControlName="email" id="email" class="form-control" type="email">
+<div class="component-container position-relative overflow-hidden rounded-4">
+    <div class="signIn-signUp row">
+        <div class="login-form col-md-6 py-5 px-5">
+            <div class="px-5">
+                <div class="py-5 px">
+                    <div class="mt-5">
+                        <h2 class="mb-2 text-center fw-bold fst-italic fs-1">Sign In</h2>
                     </div>
 
-                    <div>
-                        <label for="password">Password</label>
-                        <input formControlName="password" id="password" class="form-control" type="password">
+                    <form [formGroup]="loginform" (ngSubmit)="login(loginform)" class="mb-3" autocomplete="off">
+
+                        <div class="mt-4 mb-4 position-relative">
+                            <input formControlName="email" id="email-login" class="test p-2" type="email">
+                            <label for="email">Email</label>
+                            <span></span>
+                        </div>
+
+                        <div class="position-relative">
+                            <input formControlName="password" id="password-login" class="test p-2" type="password">
+                            <label for="password">Password</label>
+                            <span></span>
+                        </div>
+
+                        <div class="d-flex justify-content-center flex-column align-items-center mt-3">
+                            <p routerLink="/forgetPassword"
+                                class="clickable forgetPass fst-italic text-muted text-center">→
+                                Forgot your
+                                password? ←</p>
+
+                            <button [disabled]="loginform.invalid" class="btn px-5">
+                                <span *ngIf="!isLoadingLogin">Sign In</span>
+                                <i *ngIf="isLoadingLogin" class="fa-solid fa-spinner fa-spin"></i>
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <div *ngIf="errorMessageLogin" class="alert alert-danger text-center">
+                        <p class="m-0">
+                            {{errorMessageLogin}}
+                        </p>
                     </div>
-
-                    <div class="d-flex justify-content-center flex-column align-items-center mt-3">
-                        <p routerLink="/forgetPassword" class="clickable forgetPass fst-italic text-muted text-center">→ Forgot your
-                            password? ←</p>
-
-                        <button [disabled]="loginform.invalid" class="btn btn-primary px-5">
-                            <span *ngIf="!isLoading">Login</span>
-                            <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
-                        </button>
-                    </div>
-
-                </form>
-
-                <div *ngIf="errorMessage" class="alert alert-danger text-center">
-                    <p class="m-0">
-                        {{errorMessage}}
-                    </p>
                 </div>
             </div>
         </div>
 
-    </div>
+        <div class="register-form col-md-6 py-5 px-5 position-relative">
 
-    <div
-        class="rightSide px-5 col-md-6 rounded-end-4 d-flex justify-content-center align-items-center flex-column gap-2">
-        <div class="d-flex flex-column align-items-center w-10075 fs-5">
-            <h1 class="text-center mb-3 fw-bold">Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
-        <button class="btn btn-outline-light px-5">Sign Up</button>
+            <div class="p-5 py-4">
+                <div class="mt-5">
+                    <h2 class="my-5 mb-4 text-center fw-bold fst-italic fs-1">Sign Up</h2>
+                </div>
+
+                <form (ngSubmit)="submit(registerForm)" [formGroup]="registerForm">
+
+                    <div id="name">
+                        <div class="mb-2">
+                            <label for="name-register">Name :</label>
+                            <input formControlName="name" class="form-control" type="text" id="name-register">
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+                            <p *ngIf="registerForm.get('name')?.getError('required')" class="m-0 p-0">Username is
+                                required.</p>
+                            <p *ngIf="registerForm.get('name')?.getError('maxlength')" class="m-0 p-0">The maximum
+                                length of the
+                                username is 8 characters</p>
+                            <p *ngIf="registerForm.get('name')?.getError('minlength')" class="m-0 p-0">The minimum
+                                length of
+                                the usernameis 3 characters</p>
+                        </div>
+                    </div>
+
+                    <div id="email">
+                        <div class="mb-2">
+                            <label for="email-register">Email :</label>
+                            <input formControlName="email" class="form-control" type="text" id="email-register">
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+                            <p class="m-0">Enter a valid email</p>
+                        </div>
+                    </div>
+
+
+                    <div id="password">
+
+                        <div class="mb-2">
+                            <label for="password-register">Password :</label>
+                            <input formControlName="password" class="form-control" type="password"
+                                id="password-register">
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+                            <p *ngIf="registerForm.get('password')?.getError('required')" class="m-0">Password is
+                                required</p>
+                            <p *ngIf="registerForm.get('password')?.getError('pattern')" class="m-0">Minimum eight
+                                characters, at
+                                least
+                                one uppercase letter, one lowercase letter, one number and one special character </p>
+                        </div>
+                    </div>
+
+
+                    <div id="rePassword">
+                        <div class="mb-2">
+                            <label for="repassword">Repassword :</label>
+                            <input formControlName="rePassword" class="form-control" type="password" id="repassword">
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched">
+                            <p *ngIf="registerForm.get('rePassword')?.getError('required')" class="m-0">Reassword is
+                                required</p>
+                            <p *ngIf="registerForm.get('rePassword')?.getError('matching')" class="m-0">Password and
+                                repassword
+                                aren't
+                                matched</p>
+                        </div>
+                    </div>
+
+                    <div id="phone">
+                        <div class="mb-2">
+                            <label for="phone-register">Phone :</label>
+                            <input formControlName="phone" class="form-control" type="text" id="phone-register">
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
+                            <p class="m-0">Enter a valid phone number.</p>
+                        </div>
+                    </div>
+
+
+                    <button [disabled]="registerForm.invalid" class="btn d-block mx-auto px-5 mt-4">
+                        <span *ngIf="!isLoadingRegister">Sign Up</span>
+                        <i *ngIf="isLoadingRegister" class="fa-solid fa-spinner fa-spin"></i>
+                    </button>
+
+                </form>
+
+                <div *ngIf="errorMessageRegister" class="alert alert-danger text-center mt-3">
+                    <p class="m-0">{{errorMessageRegister}}</p>
+                </div>
+            </div>
+
         </div>
     </div>
 
+    <div class="panels-container fst-italic">
+        <div
+            class="signIn-Panel px-5 col-md-6 d-flex justify-content-center align-items-center flex-column gap-2">
+            <div class="d-flex flex-column align-items-center w-10075 fs-5">
+                <h1 class="text-center mb-3 fw-bold">Welcome Back!</h1>
+                <p>To keep connected with us please login with your info</p>
+                <button id="signIn-btn" class="btn btn-outline-light px-5 rounded-5">Sign In</button>
+            </div>
+        </div>
+        
+        <div
+            class="signUp-Panel px-5 col-md-6 d-flex justify-content-center align-items-center flex-column gap-2">
+            <div class="d-flex flex-column align-items-center w-10075 fs-5">
+                <h1 class="text-center mb-3 fw-bold">Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <button id="signUp-btn" class="btn btn-outline-light px-5 rounded-5">Sign Up</button>
+            </div>
+        </div>
+    </div>
 </div>

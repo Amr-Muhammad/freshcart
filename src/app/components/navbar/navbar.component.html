@@ -41,12 +41,12 @@
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold">
 
-                <li *ngIf="!isLogged" class="nav-item">
+                <!-- <li *ngIf="!isLogged" class="nav-item">
                     <a class="nav-link me-2" routerLinkActive="active" routerLink="/register">Register</a>
-                </li>
+                </li> -->
 
                 <li *ngIf="!isLogged" class="nav-item">
-                    <a class="nav-link me-2" routerLinkActive="active" routerLink="/login">Login</a>
+                    <a class="nav-link me-2 fst-italic" routerLinkActive="active" routerLink="/login">Account</a>
                 </li>
 
                 <li *ngIf="isLogged &&!cartSmall"

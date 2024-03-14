@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
-import { RegisterComponent } from './components/register/register.component';
+// import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { authGuardGuard } from './guards/auth-guard.guard';
@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'wishlist', canActivate: [authGuardGuard], component: WishlistComponent },
   { path: 'productDetails/:id', canActivate: [authGuardGuard], component: ProductDetailsComponent },
   { path: 'checkout/:id', canActivate: [authGuardGuard], component: CheckoutComponent },
-  { path: 'register', component: RegisterComponent },
+  // { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgetPassword', component: ForgetPasswordComponent },
   { path: 'allorders', component: AllordersComponent },

@@ -55,40 +55,58 @@ export class LoginComponent implements OnInit {
         this.errorMessageLogin = ''
         this.errorMessageRegister = ''
       })
+    });
+
+    //set value to inputs when there's value written
+    (document.querySelectorAll('input') as NodeList).forEach(input => {
+      input.addEventListener('keyup', () => {
+        (input as HTMLInputElement).setAttribute('value', (input as HTMLInputElement).value)
+
+      })
+
     })
 
   }
 
   login(loginform: FormGroup) {
 
-    this.isLoadingLogin = true
+    if (true) {
+      for (let controlName in loginform.controls) {
+        if (loginform.controls.hasOwnProperty(controlName)) {
 
-    this._authser.login(loginform.value).subscribe({
-
-      next: (authResponse) => {
-
-        localStorage.setItem('token', authResponse.token)
-        this._authser.decodeToken()
-        this._cartService.getAllCart().subscribe({
-          next: (cartResponse) => {
-            this._cartService.noOfCartItems.next(cartResponse.numOfCartItems)
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        })
+        }
       }
-      ,
-      error: (err) => {
-        this.isLoadingLogin = false
-        console.log(err);
-        this.errorMessageLogin = err.error.message
-      }
-      ,
-      complete: () => {
-        this._router.navigate(['./home'])
-      },
-    })
+    }
+    else {
+      this.isLoadingLogin = true
+
+      this._authser.login(loginform.value).subscribe({
+
+        next: (authResponse) => {
+
+          localStorage.setItem('token', authResponse.token)
+          this._authser.decodeToken()
+          this._cartService.getAllCart().subscribe({
+            next: (cartResponse) => {
+              this._cartService.noOfCartItems.next(cartResponse.numOfCartItems)
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          })
+        }
+        ,
+        error: (err) => {
+          this.isLoadingLogin = false
+          console.log(err);
+          this.errorMessageLogin = err.error.message
+        }
+        ,
+        complete: () => {
+          this._router.navigate(['./home'])
+        },
+      })
+    }
 
   }
 

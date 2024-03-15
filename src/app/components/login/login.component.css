@@ -90,7 +90,8 @@ label {
     transition: all 0.5s;
 }
 
-input:focus~label {
+.input:not([value=''])~label,
+.input:focus~label {
     top: -25px;
 }
 
@@ -105,23 +106,24 @@ input:focus~label {
     transition: all 0.5s;
 }
 
-.test {
+.input {
     width: 100%;
     border: none;
     background-color: rgb(243, 243, 243);
 }
 
-.test:focus {
+.input:focus {
     outline: none;
 }
 
 input:focus~span::before {
     width: 100%;
     left: 0;
+    /* top: 100%; */
 }
 
 .signIn-signUp .btn {
-    border: 1px solid black;
+    border: 1px solid var(--mainColor);
     border-radius: 7px;
     transition: all 0.2s;
 }
@@ -130,4 +132,8 @@ input:focus~span::before {
     background-color: var(--mainColor);
     border-color: var(--mainColor);
     color: white;
+}
+
+.test {
+    gap: 0px 10px;
 }

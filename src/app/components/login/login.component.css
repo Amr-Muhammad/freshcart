@@ -86,7 +86,7 @@ label {
     left: 15px;
     top: 8px;
     pointer-events: none;
-    color: rgb(0, 0, 0);
+    color: rgb(163, 163, 163);
     transition: all 0.5s;
 }
 
@@ -128,12 +128,115 @@ input:focus~span::before {
     transition: all 0.2s;
 }
 
-.signIn-signUp .btn:hover {
+.panels-container .btn {
+    border: 1px solid white;
+    border-radius: 7px;
+    transition: all 0.2s;
     background-color: var(--mainColor);
-    border-color: var(--mainColor);
     color: white;
 }
 
+:is(.signIn-signUp) .btn:hover,
+.btn:focus {
+    background-color: var(--mainColor) !important;
+    border-color: var(--mainColor) !important;
+    color: white !important;
+}
+
+:is(.panels-container) .btn:hover,
+.btn:focus {
+    background-color: white;
+    color: black;
+}
+
+
 .test {
     gap: 0px 10px;
+}
+
+.alert {
+    animation-name: shake;
+    animation-duration: 0.5s;
+    animation-play-state: paused;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+
+
+    0% {
+        transform: translateX(1px);
+    }
+
+    25% {
+        transform: translateX(-1px);
+    }
+
+    50% {
+        transform: translateX(1px);
+    }
+
+    75% {
+        transform: translateX(-1px);
+    }
+
+    100% {
+        transform: translateX(1px);
+    }
+
+}
+
+.btnChange {
+    display: none;
+}
+
+@media screen and (max-width:770px) {
+
+    .component-container {
+        height: 100vh;
+    }
+
+    .signIn-signUp::before {
+        left: 0;
+        /* bottom: 0; */
+        /* display: none; */
+        /* width: 100%; */
+        /* height: 100%; */
+        /* background-color: red; */
+        z-index: 0;
+    }
+
+    .panels-container {
+        display: none;
+    }
+
+    .login-form {
+        /* opacity: 1; */
+        transform: translateY(100%);
+    }
+
+    .register-form {
+        opacity: 1 !important;
+        transform: translateY(-120%);
+    }
+
+     #signUp-btn {
+        border: 1px solid white !important;
+    }
+
+    .btnChange {
+        display: block;
+        border: none;
+        box-shadow: 0px 0px 10px gray;
+        outline: none;
+        border-radius: 20px 20px 0px 0px;
+        padding: 7px 35px;
+        /* border-bottom: none; */
+        transition: 0.5s;
+    }
+
+    .btnChange:hover{
+        background-color: rgb(121, 121, 121);
+        color: white;
+    }
 }

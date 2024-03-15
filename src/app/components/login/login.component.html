@@ -1,6 +1,5 @@
 <div class="component-container position-relative overflow-hidden rounded-4">
     <div class="signIn-signUp row">
-
         <div class="login-form col-md-6 py-5 px-5">
             <div class="px-5">
                 <div class="py-5 px">
@@ -17,7 +16,8 @@
                         </div>
 
                         <div class="position-relative">
-                            <input value="" formControlName="password" id="password-login" class="input p-2" type="password">
+                            <input value="" formControlName="password" id="password-login" class="input p-2"
+                                type="password">
                             <label for="password">Password</label>
                             <span></span>
                         </div>
@@ -28,7 +28,7 @@
                                 Forgot your
                                 password? ←</p>
 
-                            <button  class="btn px-5">
+                            <button class="btn px-5">
                                 <span *ngIf="!isLoadingLogin">Sign In</span>
                                 <i *ngIf="isLoadingLogin" class="fa-solid fa-spinner fa-spin"></i>
                             </button>
@@ -76,7 +76,8 @@
 
                         <div class="col-md-6 mb-4" id="email">
                             <div class="position-relative">
-                                <input value="" formControlName="email" class="input p-2" type="text" id="email-register">
+                                <input value="" formControlName="email" class="input p-2" type="text"
+                                    id="email-register">
                                 <label for="email-register">Email</label>
                                 <span></span>
 
@@ -112,7 +113,8 @@
 
                         <div class="col-md-6 mb-4" id="rePassword">
                             <div class="position-relative">
-                                <input value="" formControlName="rePassword" class="input p-2" type="password" id="repassword">
+                                <input value="" formControlName="rePassword" class="input p-2" type="password"
+                                    id="repassword">
                                 <label for="repassword">Repassword</label>
                                 <span></span>
                             </div>
@@ -141,7 +143,7 @@
                     </div>
 
 
-                    <button [disabled]="registerForm.invalid" class="btn d-block mx-auto px-5 mt-4">
+                    <button class="btn d-block mx-auto px-5 mt-4">
                         <span *ngIf="!isLoadingRegister">Sign Up</span>
                         <i *ngIf="isLoadingRegister" class="fa-solid fa-spinner fa-spin"></i>
                     </button>
@@ -160,17 +162,21 @@
         <div class="signIn-Panel px-5 col-md-6 d-flex justify-content-center align-items-center flex-column gap-2">
             <div class="d-flex flex-column align-items-center w-10075 fs-5">
                 <h1 class="text-center mb-3 fw-bold">Welcome Back!</h1>
-                <p>To keep connected with us please login with your info</p>
-                <button id="signIn-btn" class="btn btn-outline-light px-5 rounded-5">Sign In</button>
+                <p class="text-center">To keep connected with us please login with your info</p>
+                <button id="signIn-btn" class="btn px-5 rounded-5">Sign In</button>
             </div>
         </div>
 
         <div class="signUp-Panel px-5 col-md-6 d-flex justify-content-center align-items-center flex-column gap-2">
             <div class="d-flex flex-column align-items-center w-10075 fs-5">
                 <h1 class="text-center mb-3 fw-bold">Hello, Friend!</h1>
-                <p>Enter your personal details and start journey with us</p>
-                <button id="signUp-btn" class="btn btn-outline-light px-5 rounded-5">Sign Up</button>
+                <p class="text-center">Enter your personal details and start journey with us</p>
+                <button id="signUp-btn" class="btn px-5 rounded-5">Sign Up</button>
             </div>
         </div>
+    </div>
+
+    <div>
+        <button class="btnChange position-absolute bottom-0 start-50 translate-middle-x">Sign Up</button>
     </div>
 </div>

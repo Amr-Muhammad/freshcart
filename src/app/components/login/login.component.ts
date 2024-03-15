@@ -61,74 +61,102 @@ export class LoginComponent implements OnInit {
     (document.querySelectorAll('input') as NodeList).forEach(input => {
       input.addEventListener('keyup', () => {
         (input as HTMLInputElement).setAttribute('value', (input as HTMLInputElement).value)
-
       })
 
+    })
+
+    //Small Screen
+    document.querySelector('.btnChange')?.addEventListener('click', () => {
+      (document.querySelector('.register-form') as HTMLElement).style.transform = 'translateY(0px)';
+      (document.querySelector('.login-form') as HTMLElement).style.transform = 'translateY(-10%)';
     })
 
   }
 
   login(loginform: FormGroup) {
 
-    if (true) {
-      for (let controlName in loginform.controls) {
-        if (loginform.controls.hasOwnProperty(controlName)) {
 
-        }
+
+    this.isLoadingLogin = true
+
+    this._authser.login(loginform.value).subscribe({
+
+      next: (authResponse) => {
+
+        localStorage.setItem('token', authResponse.token)
+        this._authser.decodeToken()
+        this._cartService.getAllCart().subscribe({
+          next: (cartResponse) => {
+            this._cartService.noOfCartItems.next(cartResponse.numOfCartItems)
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        })
       }
-    }
-    else {
-      this.isLoadingLogin = true
+      ,
+      error: (err) => {
+        this.isLoadingLogin = false
+        console.log(err);
+        this.errorMessageLogin = err.error.message
+      }
+      ,
+      complete: () => {
+        this._router.navigate(['./home'])
+      },
+    })
 
-      this._authser.login(loginform.value).subscribe({
-
-        next: (authResponse) => {
-
-          localStorage.setItem('token', authResponse.token)
-          this._authser.decodeToken()
-          this._cartService.getAllCart().subscribe({
-            next: (cartResponse) => {
-              this._cartService.noOfCartItems.next(cartResponse.numOfCartItems)
-            },
-            error: (err) => {
-              console.log(err);
-            }
-          })
-        }
-        ,
-        error: (err) => {
-          this.isLoadingLogin = false
-          console.log(err);
-          this.errorMessageLogin = err.error.message
-        }
-        ,
-        complete: () => {
-          this._router.navigate(['./home'])
-        },
-      })
-    }
 
   }
 
   // register
   submit(registerForm: FormGroup) {
 
-    this.isLoadingRegister = true
-    this._authser.register(registerForm.value).subscribe({
-      next: () => {
-        this.errorMessageRegister = ''
-        this.isLoadingRegister = false
-        this._router.navigate(['./login'])
+    if (registerForm.invalid) {
+      // for (let controlName in registerForm.controls) {
+      // if (registerForm.controls.hasOwnProperty(controlName)) {
+      // console.log('tmam');
 
-      },
+      // }
+      // }
 
-      error: (err) => {
-        console.log(err);
 
-        this.errorMessageRegister = err.error.message
-        this.isLoadingRegister = false
-      }
-    })
+      document.querySelectorAll('.alert').forEach(div => {
+        (div as HTMLElement).style.animationPlayState = 'running'
+        setTimeout(() => {
+          (div as HTMLElement).style.animationPlayState = 'paused'
+        }, 600);
+      })
+
+    }
+    else {
+
+      this.isLoadingRegister = true
+      this._authser.register(registerForm.value).subscribe({
+        next: () => {
+          this.errorMessageRegister = ''
+          this.isLoadingRegister = false
+          this._router.navigate(['./login'])
+
+        },
+
+        error: (err) => {
+          console.log(err);
+
+          this.errorMessageRegister = err.error.message
+          this.isLoadingRegister = false
+        },
+        complete: () => {
+          document.querySelector('.component-container')?.classList.toggle('animate')
+          document.getElementById('email-login')?.focus();
+          this.loginform.controls['email'].setValue(registerForm.controls['email'].value);
+          (document.getElementById('email-login') as HTMLInputElement).setAttribute('value', (document.getElementById('email-login') as HTMLInputElement).value);
+          this.errorMessageLogin = ''
+          this.errorMessageRegister = ''
+          this.registerForm.reset()
+        }
+      })
+    }
   }
 
   repasswordMatching(form: any) {

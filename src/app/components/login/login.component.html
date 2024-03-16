@@ -1,7 +1,7 @@
 <div class="component-container position-relative overflow-hidden rounded-4">
     <div class="signIn-signUp row mx-auto">
-        <div class="login-form col-md-6 py-5 px-5">
-            <div class="px-5 py-5">
+        <div class="login-form col-md-6 py-5 px-5 text-center">
+            <div class="haha px-5 py-5">
                 <div class="mt-5">
                     <h2 class="mb-2 text-center fw-bold fst-italic fs-1">Sign In</h2>
                 </div>
@@ -44,7 +44,7 @@
 
         <div class="register-form col-md-6 py-5 px-5">
 
-            <div class="p-5 py-4">
+            <div class="p-5 py-4 overflow-hidden">
                 <div class="mt-5">
                     <h2 class="my-5 mb-4 text-center fw-bold fst-italic fs-1">Sign Up</h2>
                 </div>
@@ -52,7 +52,7 @@
                 <form (ngSubmit)="submit(registerForm)" [formGroup]="registerForm">
 
                     <div class="d-flex test">
-                        <div class="col-md-6 mb-4" id="name">
+                        <div class="col-6 mb-4" id="name">
                             <div class="position-relative">
                                 <input value="" formControlName="name" class="input p-2" type="text" id="name-register">
                                 <label for="name-register">Name</label>
@@ -71,7 +71,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 mb-4" id="email">
+                        <div class="col-6 mb-4" id="email">
                             <div class="position-relative">
                                 <input value="" formControlName="email" class="input p-2" type="text"
                                     id="email-register">
@@ -88,7 +88,7 @@
 
 
                     <div class="d-flex test">
-                        <div class="col-md-6 mb-4" id="password">
+                        <div class="col-6 mb-4" id="password">
                             <div class="position-relative">
                                 <input value="" formControlName="password" class="input p-2" type="password"
                                     id="password-register">
@@ -108,7 +108,7 @@
                         </div>
 
 
-                        <div class="col-md-6 mb-4" id="rePassword">
+                        <div class="col-6 mb-4" id="rePassword">
                             <div class="position-relative">
                                 <input value="" formControlName="rePassword" class="input p-2" type="password"
                                     id="repassword">
@@ -129,7 +129,7 @@
 
                     <div class="mb-4" id="phone">
                         <div class="position-relative">
-                            <input value="" formControlName="phone" class="input p-2" type="text" id="phone-register">
+                            <input value="" formControlName="phone" class="ms-1 input p-2" type="text" id="phone-register">
                             <label for="phone-register">Phone</label>
                             <span></span>
                         </div>

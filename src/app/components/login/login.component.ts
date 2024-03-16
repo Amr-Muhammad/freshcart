@@ -67,29 +67,8 @@ export class LoginComponent implements OnInit {
 
     //Small Screen btn toggle sign in and up
     document.querySelector('.btnChange')?.addEventListener('click', () => {
-      this.registerForm.reset()
-      this.loginform.reset()
-      if ((document.querySelector('.btnChange') as HTMLButtonElement).innerText == 'Sign Up') {
-        (document.querySelector('.btnChange') as HTMLElement).innerText = 'Sign In';
-        (document.querySelector('.login-form') as HTMLElement).style.transform = 'translateY(100%)';
-        (document.querySelector('.login-form') as HTMLElement).style.opacity = '0';
-        setTimeout(() => {
-          (document.querySelector('.register-form') as HTMLElement).style.transform = 'translateY(0)';
-          (document.querySelector('.register-form') as HTMLElement).style.opacity = '1';
-        }, 1000);
-
-      }
-      else if ((document.querySelector('.btnChange') as HTMLElement).innerText == 'Sign In') {
-        (document.querySelector('.btnChange') as HTMLElement).innerText = 'Sign Up';
-        (document.querySelector('.login-form') as HTMLElement).style.opacity = '1';
-        (document.querySelector('.login-form') as HTMLElement).style.transform = 'translateY(0)';
-
-        (document.querySelector('.register-form') as HTMLElement).style.transform = 'translateY(-100%)';
-        (document.querySelector('.register-form') as HTMLElement).style.opacity = '0';
-
-      }
+      this.toggleBtn()
     })
-
   }
 
   login(loginform: FormGroup) {
@@ -164,13 +143,23 @@ export class LoginComponent implements OnInit {
           this.isLoadingRegister = false
         },
         complete: () => {
-          document.querySelector('.component-container')?.classList.toggle('animate')
-          document.getElementById('email-login')?.focus();
-          this.loginform.controls['email'].setValue(registerForm.controls['email'].value);
-          (document.getElementById('email-login') as HTMLInputElement).setAttribute('value', (document.getElementById('email-login') as HTMLInputElement).value);
-          this.errorMessageLogin = ''
-          this.errorMessageRegister = ''
-          this.registerForm.reset()
+          if (window.matchMedia('(max-width: 770px)').matches) {
+            document.getElementById('email-login')?.focus();
+            this.loginform.controls['email'].setValue(registerForm.controls['email'].value);
+            (document.getElementById('email-login') as HTMLInputElement).setAttribute('value', (document.getElementById('email-login') as HTMLInputElement).value);
+            this.errorMessageLogin = ''
+            this.errorMessageRegister = ''
+            this.toggleBtn();
+          }
+          else {
+            document.querySelector('.component-container')?.classList.toggle('animate')
+            document.getElementById('email-login')?.focus();
+            this.loginform.controls['email'].setValue(registerForm.controls['email'].value);
+            (document.getElementById('email-login') as HTMLInputElement).setAttribute('value', (document.getElementById('email-login') as HTMLInputElement).value);
+            this.errorMessageLogin = ''
+            this.errorMessageRegister = ''
+            this.registerForm.reset()
+          }
         }
       })
     }
@@ -187,5 +176,30 @@ export class LoginComponent implements OnInit {
     }
   }
   // register
+
+  // Small screen toggle btn
+  toggleBtn() {
+    this.registerForm.reset()
+    // this.loginform.reset()
+    if ((document.querySelector('.btnChange') as HTMLButtonElement).innerText == 'Sign Up') {
+      (document.querySelector('.btnChange') as HTMLElement).innerText = 'Sign In';
+      (document.querySelector('.login-form') as HTMLElement).style.transform = 'translateY(100%)';
+      (document.querySelector('.login-form') as HTMLElement).style.opacity = '0';
+      setTimeout(() => {
+        (document.querySelector('.register-form') as HTMLElement).style.transform = 'translateY(0)';
+        (document.querySelector('.register-form') as HTMLElement).style.opacity = '1';
+      }, 1000);
+
+    }
+    else if ((document.querySelector('.btnChange') as HTMLElement).innerText == 'Sign In') {
+      (document.querySelector('.btnChange') as HTMLElement).innerText = 'Sign Up';
+      (document.querySelector('.login-form') as HTMLElement).style.opacity = '1';
+      (document.querySelector('.login-form') as HTMLElement).style.transform = 'translateY(0)';
+
+      (document.querySelector('.register-form') as HTMLElement).style.transform = 'translateY(-100%)';
+      (document.querySelector('.register-form') as HTMLElement).style.opacity = '0';
+
+    }
+  }
 
 }
